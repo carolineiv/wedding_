@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #4a5b4a;
+    background: white;
     font-family: 'JetBrains Mono', monospace;
     padding: 40px 20px;
     min-height: 100vh;
@@ -14,9 +14,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: white;
-    border: 2px solid #2c2c2c;
-    box-shadow: 15px 15px 0 rgba(0,0,0,0.1);
+    background-color: #ffffff;
     padding: 40px;
     position: relative;
 }
@@ -43,8 +41,8 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding: 20px;
-    border: 2px solid #2c2c2c;
-    background: #fafaf5;
+    border: 1px solid #e0e0e0;
+    background: white;
 }
 
 .case-number {
@@ -76,7 +74,7 @@ body {
     align-items: baseline;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #2c2c2c;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .protocol-number {
@@ -94,8 +92,8 @@ body {
 .officer-section {
     margin: 30px 0;
     padding: 20px;
-    background: #fafaf5;
-    border-left: 5px solid #8b0000;
+    background: white;
+    border-left: 1px solid #e0e0e0;
 }
 
 .officer-text {
@@ -115,7 +113,7 @@ body {
 
 .name-value {
     font-weight: bold;
-    border-bottom: 1px dashed #2c2c2c;
+    border-bottom: 1px dashed #ccc;
     min-width: 150px;
     display: inline-block;
 }
@@ -127,8 +125,8 @@ body {
 }
 
 .name-card {
-    background: #2c2c2c;
-    color: white;
+    background: white;
+    color: #2c2c2c;
     padding: 15px 20px;
     margin: 10px 0;
     font-family: 'Press Start 2P', cursive;
@@ -136,7 +134,7 @@ body {
     transform: translateX(100%);
     opacity: 0;
     animation: slideInRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-    border-left: 8px solid #d4af37;
+    border-left: 4px solid #d4af37;
 }
 
 .name-value {
@@ -158,8 +156,9 @@ body {
 .birth-section {
     margin: 20px 0;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #e0e0e0;
     text-align: center;
+    background: white;
 }
 
 .birth-line {
@@ -184,8 +183,8 @@ body {
 .crime-section {
     margin: 30px 0;
     padding: 20px;
-    background: #fafaf5;
-    border: 1px solid #2c2c2c;
+    background: white;
+    border: 1px solid #e0e0e0;
 }
 
 .crime-title {
@@ -225,7 +224,7 @@ body {
 .resolution {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px dashed #2c2c2c;
+    border-top: 1px dashed #e0e0e0;
 }
 
 /* Фотогалерея */
@@ -238,10 +237,10 @@ body {
 
 .photo-frame {
     flex: 1;
-    border: 3px solid #2c2c2c;
+    border: 1px solid #e0e0e0;
     padding: 5px;
     background: white;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+    box-shadow: none;
 }
 
 .photo-frame img {
@@ -255,7 +254,7 @@ body {
 .protocol-section {
     margin: 25px 0;
     padding: 15px;
-    border-left: 4px solid #d4af37;
+    border-left: 1px solid #e0e0e0;
     background: white;
 }
 
@@ -264,7 +263,7 @@ body {
     font-size: 18px;
     margin-bottom: 12px;
     color: #2c2c2c;
-    border-bottom: 2px solid #2c2c2c;
+    border-bottom: 1px solid #e0e0e0;
     display: inline-block;
     padding-right: 20px;
 }
@@ -276,7 +275,7 @@ body {
 
 /* Форма гостей */
 .guest-form {
-    background: #fafaf5;
+    background: white;
 }
 
 .form-group {
@@ -291,7 +290,7 @@ body {
     flex: 1;
     padding: 8px 12px;
     font-family: 'JetBrains Mono', monospace;
-    border: 1px solid #2c2c2c;
+    border: 1px solid #e0e0e0;
     background: white;
     font-size: 14px;
 }
@@ -317,7 +316,7 @@ body {
 
 .guest-item {
     padding: 8px;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #e0e0e0;
     font-family: monospace;
 }
 
@@ -336,12 +335,12 @@ body {
     text-align: center;
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 2px solid #2c2c2c;
+    border-top: 1px solid #e0e0e0;
 }
 
 .music-btn {
     background: none;
-    border: 2px solid #2c2c2c;
+    border: 1px solid #2c2c2c;
     padding: 10px 25px;
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
@@ -354,32 +353,181 @@ body {
     color: white;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Для планшетов и маленьких ноутбуков (до 1024px) */
+@media (max-width: 1024px) {
     .container {
         padding: 20px;
     }
     
-    .photo-gallery {
-        flex-direction: column;
+    .protocol-number {
+        font-size: 20px;
     }
     
     .name-card {
-        font-size: 12px;
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+}
+
+/* Для телефонов (до 768px) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
     }
     
-    .crime-title {
+    .container {
+        padding: 15px;
+        margin: 0;
+    }
+    
+    /* Шапка */
+    .protocol-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .protocol-number {
+        font-size: 16px;
+    }
+    
+    .protocol-sound {
+        font-size: 10px;
+    }
+    
+    /* Штамп */
+    .stamp-main {
+        position: static;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-size: 8px;
+    }
+    
+    /* Личное дело */
+    .personal-case {
+        padding: 15px;
+    }
+    
+    .case-number {
         font-size: 18px;
     }
     
-    .form-group {
-        flex-direction: column;
-        align-items: stretch;
+    .case-title {
+        font-size: 14px;
     }
     
-    .stamp-main {
-        position: static;
-        margin-bottom: 20px;
-        display: inline-block;
+    .case-stamp {
+        font-size: 10px;
+    }
+    
+    /* Анимация */
+    .name-card {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    /* Фотогалерея */
+    .photo-gallery {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .photo-frame img {
+        height: 200px;
+    }
+    
+    /* Секции */
+    .protocol-section {
+        padding: 12px;
+        margin: 15px 0;
+    }
+    
+    .section-title {
+        font-size: 16px;
+        display: block;
+        text-align: center;
+    }
+    
+    .section-content {
+        font-size: 13px;
+    }
+    
+    /* Преступление любви */
+    .crime-title {
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+    
+    .crime-description {
+        font-size: 13px;
+    }
+    
+    .circumstances-list {
+        margin-left: 20px;
+    }
+    
+    .circumstances-list li {
+        font-size: 13px;
+    }
+    
+    /* Форма гостей */
+    .form-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-group input {
+        width: 100%;
+    }
+    
+    .protocol-btn {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    /* Подписи */
+    .signature-line {
+        font-size: 12px;
+    }
+    
+    /* Музыка */
+    .music-btn {
+        font-size: 9px;
+        padding: 8px 15px;
+        width: 100%;
     }
 }
+
+/* Для маленьких телефонов (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .name-card {
+        font-size: 10px;
+    }
+    
+    .crime-title {
+        font-size: 16px;
+    }
+    
+    .crime-number {
+        font-size: 10px;
+    }
+    
+    .section-title {
+        font-size: 14px;
+    }
+    
+    .photo-frame img {
+        height: 150px;
+    }
+    
+    .guest-item {
+        font-size: 12px;
+    }
+}
+
