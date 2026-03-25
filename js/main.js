@@ -120,8 +120,8 @@ class ProtocolInvitation {
     }
     
     setupSignatures() {
-        const groom = { surname: 'КАБЕЛЬ', name: 'ИМЯ', patronymic: 'ОТЧЕСТВО' };
-        const bride = { fullName: 'ФАМИЛИЯ ИМЯ ОТЧЕСТВО' };
+        const groom = { surname: 'ВОРОНИН', name: 'РОСТИСЛАВ', patronymic: 'СЕРГЕЕВИЧ' };
+        const bride = { fullName: 'УСТИНОВА АНАСТАСИЯ МАКСИМОВНА' };
         
         const setText = (id, value) => {
             const el = document.getElementById(id);

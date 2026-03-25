@@ -3,37 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Личное дело №007 | Протокол задержания</title>
+    <title>Личное дело №001 | Воронин & Устинова</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="book-container">
-        <!-- Страница 1 (передняя) -->
+        <!-- СТРАНИЦА 1: ЛИЧНОЕ ДЕЛО -->
         <div id="page1" class="page page-front">
             <div class="page-inner">
-                <div class="case-number-main">Личное дело № 007</div>
+                <div class="case-number-main">Личное дело № 001</div>
                 <div class="case-title-main">о задержании гражданки<br>с целью последующего бракосочетания</div>
                 <button id="openCaseBtn" class="stamp-btn">ОТКРЫТО</button>
             </div>
         </div>
 
-        <!-- Страница 2 (задняя) -->
+        <!-- СТРАНИЦА 2: ПРОТОКОЛ -->
         <div id="page2" class="page page-back" style="display: none;">
             <div class="page-inner">
                 <div class="container">
+                    <!-- Кнопка звука -->
                     <button id="musicToggleBtn" class="music-glass-btn">🔊</button>
                     <audio id="protocolMusic" loop>
                         <source src="assets/music/protocol.mp3" type="audio/mpeg">
                     </audio>
 
+                    <!-- Штамп -->
                     <div class="stamp-main">
                         ВЕЩЕСТВЕННОЕ ДОКАЗАТЕЛЬСТВО<br>
-                        06.06.2026<br>
-                        № 007/06062026<br>
+                        26.06.2026<br>
+                        № 001/42682<br>
                         НЕ ВСКРЫВАТЬ!
                     </div>
 
+                    <!-- Личное дело -->
+                    <div class="personal-case">
+                        <div class="case-number">Личное дело № 001</div>
+                        <div class="case-title">О задержании гражданки с целью последующего бракосочетания</div>
+                        <div class="case-stamp">ОТКРЫТО</div>
+                    </div>
+
+                    <!-- Шапка протокола -->
                     <div class="protocol-header">
                         <div class="protocol-number">
                             <div class="typewriter-text">ПРОТОКОЛ</div>
@@ -41,41 +51,45 @@
                         </div>
                     </div>
 
+                    <!-- Уполномоченное лицо с фото -->
                     <div class="officer-section">
-    <div class="officer-with-photo">
-        <div class="officer-info">
-            <div class="officer-text">
-                Я, уполномоченное лицо, гражданин
-            </div>
-            <div class="officer-name">
-                <div class="name-line">ФАМИЛИЯ: <span class="name-value" id="groomSurname">Воронин</span></div>
-                <div class="name-line">ИМЯ: <span class="name-value" id="groomName">Ростислав</span></div>
-                <div class="name-line">ОТЧЕСТВО: <span class="name-value" id="groomPatronymic">Сергеевич</span></div>
-            </div>
-            <div class="officer-text">
-                Действуя на основании личных намерений, устойчивых чувств и окончательного решения о создании семьи, произвел задержание гражданки:
-            </div>
-        </div>
-        <div class="officer-photo">
-            <img src="assets/photos/groom-photo.jpg" alt="Фото уполномоченного лица">
-        </div>
-    </div>
-</div>
-
-                    <div class="couple-names-animation">
-                        <div class="name-card name-bride" id="brideName">
-                            ЗАДЕРЖАННАЯ: <span class="name-value" id="brideFullName">Устинова ИМЯ ОТЧЕСТВО</span>
+                        <div class="officer-with-photo">
+                            <div class="officer-info">
+                                <div class="officer-text">
+                                    Я, уполномоченное лицо, гражданин
+                                </div>
+                                <div class="officer-name">
+                                    <div class="name-line">ФАМИЛИЯ: <span class="name-value" id="groomSurname">ВОРОНИН</span></div>
+                                    <div class="name-line">ИМЯ: <span class="name-value" id="groomName">РОСТИСЛАВ</span></div>
+                                    <div class="name-line">ОТЧЕСТВО: <span class="name-value" id="groomPatronymic">СЕРГЕЕВИЧ</span></div>
+                                </div>
+                                <div class="officer-text">
+                                    Действуя на основании личных намерений, устойчивых чувств и окончательного решения о создании семьи, произвел задержание гражданки:
+                                </div>
+                            </div>
+                            <div class="officer-photo">
+                                <img src="assets/photos/groom-photo.jpg" alt="Фото уполномоченного лица">
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Задержанная гражданка -->
+                    <div class="couple-names-animation">
+                        <div class="name-card name-bride" id="brideName">
+                            ЗАДЕРЖАННАЯ: <span class="name-value" id="brideFullName">УСТИНОВА АНАСТАСИЯ МАКСИМОВНА</span>
+                        </div>
+                    </div>
+
+                    <!-- Нарождение -->
                     <div class="birth-section">
                         <div class="birth-line">НАРОЖДЕНИЕ</div>
                         <div class="birth-names">
-                            <div>Фамилия: <span class="empty-field">__________</span></div>
-                            <div>Имя: <span class="empty-field">__________</span></div>
+                            <div>Фамилия: <span class="empty-field">УСТИНОВА</span></div>
+                            <div>Имя: <span class="empty-field">АНАСТАСИЯ</span></div>
                         </div>
                     </div>
 
+                    <!-- Преступление любви -->
                     <div class="crime-section">
                         <div class="crime-title">ПРЕСТУПЛЕНИЕ ЛЮБВИ</div>
                         <div class="crime-number">НАРУШЕНИЕ 42682</div>
@@ -92,40 +106,69 @@
                         </ul>
                         <div class="resolution">
                             <strong>[СОСТАНОВЛЕНО]</strong><br>
-                            Назначить процедуру официального бракосочетания на «06» июня 2026 г.
+                            Назначить процедуру официального бракосочетания на «26» июля 2026 г.
                         </div>
                     </div>
 
+                    <!-- Фотогалерея -->
                     <div class="photo-gallery">
-                        <div class="photo-frame"><img src="assets/photos/couple-1.jpg" alt="Фото"></div>
-                        <div class="photo-frame"><img src="assets/photos/couple-2.jpg" alt="Фото"></div>
+                        <div class="photo-frame">
+                            <img src="assets/photos/couple-1.jpg" alt="Фото пары">
+                        </div>
+                        <div class="photo-frame">
+                            <img src="assets/photos/couple-2.jpg" alt="Фото места">
+                        </div>
                     </div>
 
+                    <!-- I. МЕСТО ПРОВЕДЕНИЯ -->
                     <div class="protocol-section">
                         <div class="section-title">I. МЕСТО ПРОВЕДЕНИЯ</div>
-                        <div class="section-content">Торжественное празднование задержания состоится по адресу:<br><strong>"Замечаний вам" Спикеры</strong><br>KAT DEMCHENKOO</div>
+                        <div class="section-content">
+                            Торжественное празднование задержания состоится по адресу:<br>
+                            <strong>"Замечаний вам" Спикеры</strong><br>
+                            KAT DEMCHENKOO
+                        </div>
                     </div>
 
+                    <!-- II. ПРОГРАММА -->
                     <div class="protocol-section">
                         <div class="section-title">II. ПРОГРАММА</div>
-                        <div class="section-content"><div id="programList"></div></div>
+                        <div class="section-content">
+                            <div id="programList"></div>
+                        </div>
                     </div>
 
+                    <!-- III. ФОРМА ОДЕЖДЫ -->
                     <div class="protocol-section">
                         <div class="section-title">III. ФОРМА ОДЕЖДЫ</div>
-                        <div class="section-content">В целях соблюдения праздничной дисциплины предписывается: стиль классический, цветовая директива от бежевых до шоколадных оттенков.</div>
+                        <div class="section-content">
+                            В целях соблюдения праздничной дисциплины предписывается:<br>
+                            стиль классический, цветовая директива от бежевых до шоколадных оттенков.
+                        </div>
                     </div>
 
+                    <!-- IV. ПОРЯДОК ПЕРЕДАЧИ -->
                     <div class="protocol-section">
                         <div class="section-title">IV. ПОРЯДОК ПЕРЕДАЧИ</div>
-                        <div class="section-content">В ходе предварительной проверки установлено, что молодая семья обеспечена предметами быта. В связи с этим разрешается передача подарков исключительно в денежной форме. Средства будут направлены на развитие совместной стратегии и укрепление материально-технической базы семьи. Передача цветочной продукции не требуется.</div>
+                        <div class="section-content">
+                            В ходе предварительной проверки установлено, что молодая семья обеспечена предметами быта.<br>
+                            В связи с этим разрешается передача подарков исключительно в денежной форме.
+                            <br><br>
+                            Средства будут направлены на развитие совместной стратегии и укрепление материально-технической базы семьи.
+                            <br><br>
+                            Передача цветочной продукции не требуется.
+                        </div>
                     </div>
 
+                    <!-- V. ДОПОЛНИТЕЛЬНЫЕ РАСПОРЯЖЕНИЯ -->
                     <div class="protocol-section">
                         <div class="section-title">V. ДОПОЛНИТЕЛЬНЫЕ РАСПОРЯЖЕНИЯ</div>
-                        <div class="section-content">1. В целях соблюдения регламента мероприятия и обеспечения контролируемой праздничной обстановки постановлено: лица, не достигшие совершеннолетия, к участию в мероприятии не привлекаются.</div>
+                        <div class="section-content">
+                            1. В целях соблюдения регламента мероприятия и обеспечения контролируемой праздничной обстановки постановлено: лица, не достигшие совершеннолетия, к участию в мероприятии не привлекаются.
+                        </div>
                     </div>
 
+                    <!-- Форма для гостей -->
                     <div class="protocol-section guest-form">
                         <div class="section-title">VI. ЗАПОЛНЯЕТСЯ НА КАЖДОГО ПОНЯТОГО</div>
                         <div class="form-group">
@@ -136,19 +179,26 @@
                         <div id="guestListDisplay" class="guest-list"></div>
                     </div>
 
+                    <!-- Подписи -->
                     <div class="protocol-section">
                         <div class="section-title">VII. ПОДПИСИ СТОРОН</div>
                         <div class="signatures">
-                            <div class="signature-line">Задержанный: _______________ /<span id="signGroom">Воронин И.О.</span>/</div>
-                            <div class="signature-line">Задержанная: _______________ /<span id="signBride">Устинова И.О.</span>/</div>
-                            <div class="signature-line">Должностное лицо: _______________ /Свидетель/</div>
+                            <div class="signature-line">
+                                Задержанный: _______________ /<span id="signGroom">Воронин Р.С.</span>/
+                            </div>
+                            <div class="signature-line">
+                                Задержанная: _______________ /<span id="signBride">Устинова А.М.</span>/
+                            </div>
+                            <div class="signature-line">
+                                Должностное лицо: _______________ /Свидетель/
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Элемент для тени при перелистывании -->
+        <!-- Тень при перелистывании -->
         <div id="flipShadow" class="flip-shadow"></div>
     </div>
 
