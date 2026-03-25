@@ -6,6 +6,15 @@ class ProtocolInvitation {
         this.musicStarted = false;
         this.isFlipping = false;
         
+        // Плейлист
+        this.playlist = [
+            'assets/music/protocol.mp3',
+            'assets/music/music2.mp3'
+        ];
+        this.currentTrack = 0;
+        this.nextAudio = null; // для предзагрузки
+        this.fadeInterval = null;
+        
         this.init();
         this.setupGuestForm();
         this.setupProgramList();
@@ -88,6 +97,115 @@ class ProtocolInvitation {
         }
     }
     
+    // Предзагрузка следующего трека
+    preloadNextTrack() {
+        let nextIndex = this.currentTrack + 1;
+        if (nextIndex >= this.playlist.length) {
+            nextIndex = 0;
+        }
+        
+        this.nextAudio = new Audio();
+        this.nextAudio.src = this.playlist[nextIndex];
+        this.nextAudio.load();
+    }
+    
+    playTrack(index) {
+        if (index >= this.playlist.length) {
+            index = 0;
+        }
+        
+        this.currentTrack = index;
+        this.music.src = this.playlist[this.currentTrack];
+        this.music.load();
+        
+        this.music.play().then(() => {
+            this.isMusicPlaying = true;
+            this.musicStarted = true;
+            this.music.volume = 1;
+            this.updateMusicButton();
+            
+            // Предзагружаем следующий трек
+            this.preloadNextTrack();
+            
+            // Устанавливаем обработчик окончания
+            this.music.onended = () => {
+                this.crossfadeToNext();
+            };
+        }).catch((e) => {
+            console.log('Ошибка воспроизведения:', e);
+        });
+    }
+    
+    crossfadeToNext() {
+        if (!this.isMusicPlaying) return;
+        
+        // Определяем следующий трек
+        let nextIndex = this.currentTrack + 1;
+        if (nextIndex >= this.playlist.length) {
+            nextIndex = 0;
+        }
+        
+        // Если предзагруженный трек есть и готов
+        if (this.nextAudio && this.nextAudio.src.includes(this.playlist[nextIndex])) {
+            const nextTrack = this.nextAudio;
+            
+            // Плавно убавляем текущую громкость
+            let volume = 1;
+            const fadeOut = setInterval(() => {
+                if (volume <= 0.02) {
+                    clearInterval(fadeOut);
+                    this.music.pause();
+                    
+                    // Переключаем на новый трек
+                    this.music.src = nextTrack.src;
+                    this.music.load();
+                    
+                    // Начинаем играть с громкостью 0
+                    this.music.volume = 0;
+                    this.music.play().then(() => {
+                        this.currentTrack = nextIndex;
+                        this.isMusicPlaying = true;
+                        this.updateMusicButton();
+                        
+                        // Плавно увеличиваем громкость
+                        let vol = 0;
+                        const fadeIn = setInterval(() => {
+                            if (vol >= 0.98) {
+                                clearInterval(fadeIn);
+                                this.music.volume = 1;
+                            } else {
+                                vol += 0.03;
+                                this.music.volume = Math.min(1, vol);
+                            }
+                        }, 30);
+                        
+                        // Предзагружаем следующий трек
+                        this.preloadNextTrack();
+                        
+                        // Устанавливаем обработчик для следующего окончания
+                        this.music.onended = () => {
+                            this.crossfadeToNext();
+                        };
+                    }).catch(() => {});
+                } else {
+                    volume -= 0.03;
+                    this.music.volume = Math.max(0, volume);
+                }
+            }, 30);
+        } else {
+            // Если предзагрузка не сработала — просто переключаем
+            this.playTrack(nextIndex);
+        }
+    }
+    
+    startMusicOnPage2() {
+        setTimeout(() => {
+            if (!this.musicStarted) {
+                this.playTrack(0);
+            }
+        }, 500);
+    }
+    
     setupGuestForm() {
         const addBtn = document.getElementById('addGuestBtn');
         const guestInput = document.getElementById('guestName');
@@ -121,7 +239,7 @@ class ProtocolInvitation {
     
     setupSignatures() {
         const groom = { surname: 'ВОРОНИН', name: 'РОСТИСЛАВ', patronymic: 'СЕРГЕЕВИЧ' };
-        const bride = { fullName: 'УСТИНОВА АНАСТАСИЯ МАКСИМОВНА' };
+        const bride = { surname: 'УСТИНОВА', name: 'АНАСТАСИЯ', patronymic: 'МАКСИМОВНА' };
         
         const setText = (id, value) => {
             const el = document.getElementById(id);
@@ -132,10 +250,11 @@ class ProtocolInvitation {
         setText('groomName', groom.name);
         setText('groomPatronymic', groom.patronymic);
         setText('signGroom', `${groom.surname} ${groom.name[0]}.${groom.patronymic[0]}.`);
-        setText('brideFullName', bride.fullName);
         
-        const parts = bride.fullName.split(' ');
-        setText('signBride', `${parts[0]} ${parts[1]?.[0] || ''}.${parts[2]?.[0] || ''}.`);
+        setText('brideSurname', bride.surname);
+        setText('brideName', bride.name);
+        setText('bridePatronymic', bride.patronymic);
+        setText('signBride', `${bride.surname} ${bride.name[0]}.${bride.patronymic[0]}.`);
     }
     
     addGuest() {
@@ -191,15 +310,17 @@ class ProtocolInvitation {
     
     toggleMusic() {
         if (!this.music) return;
+        
         if (this.isMusicPlaying) {
             this.music.pause();
             this.isMusicPlaying = false;
+            this.updateMusicButton();
         } else {
             this.music.play().catch(() => {});
             this.isMusicPlaying = true;
             this.musicStarted = true;
+            this.updateMusicButton();
         }
-        this.updateMusicButton();
     }
     
     updateMusicButton() {
@@ -233,18 +354,6 @@ class ProtocolInvitation {
                 photo.style.transform = 'translateY(0)';
             }, 200 + i * 150);
         });
-    }
-    
-    startMusicOnPage2() {
-        setTimeout(() => {
-            if (!this.musicStarted) {
-                this.music.play().then(() => {
-                    this.isMusicPlaying = true;
-                    this.musicStarted = true;
-                    this.updateMusicButton();
-                }).catch(() => {});
-            }
-        }, 500);
     }
 }
 
