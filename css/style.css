@@ -434,15 +434,29 @@ body {
 }
 
 @media (max-width: 768px) {
-    .case-number-main { font-size: 32px; }
-    .case-title-main { font-size: 20px; }
-    .stamp-btn { width: 220px; height: 66px; font-size: 20px; bottom: 30px; right: 30px; }
-    .typewriter-text { font-size: 32px; }
-    .photo-gallery { flex-direction: column; }
-    .form-group { flex-direction: column; }
-    .form-group input { width: 100%; }
-    .protocol-btn { width: 100%; }
-    .music-glass-btn { width: 44px; height: 44px; font-size: 24px; }
+    .officer-photo img {
+        max-width: 120px;
+    }
+    
+    .officer-with-photo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .officer-info {
+        text-align: center;
+    }
+    
+    .officer-name {
+        text-align: center;
+        padding-left: 0;
+    }
+    
+    .name-line {
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -469,12 +483,14 @@ body {
 
 .officer-photo img {
     width: 100%;
-    max-width: 150px;
+    max-width: 180px;
     height: auto;
     border-radius: 12px;
-    border: 0px solid #d4af37;
+    border: 2px solid #d4af37;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Для телефонов */
