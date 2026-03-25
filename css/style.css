@@ -134,7 +134,6 @@ body {
     padding: 20px;
 }
 
-/* СТИЛИ ДЛЯ ПЕРВОЙ СТРАНИЦЫ */
 .case-number-main {
     font-size: 36px;
     font-weight: bold;
@@ -179,7 +178,6 @@ body {
     color: white;
 }
 
-/* МУЗЫКАЛЬНАЯ КНОПКА */
 .music-glass-btn {
     position: fixed;
     top: 20px;
@@ -205,7 +203,6 @@ body {
     background: rgba(0,0,0,0.1);
 }
 
-/* ШТАМП */
 .stamp-main {
     font-family: 'Press Start 2P', cursive;
     font-size: 8px;
@@ -218,7 +215,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* ПРОТОКОЛ (без рамки) */
 .protocol-title {
     text-align: center;
     margin: 30px 0 40px 0;
@@ -238,7 +234,6 @@ body {
     color: #333;
 }
 
-/* КВАДРАТИКИ (как в тетради) */
 .square-field {
     display: inline-block;
     background: white;
@@ -256,28 +251,6 @@ body {
     min-width: 200px;
 }
 
-.bride-name-section {
-    margin: 20px 0;
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.bride-label {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.bride-square {
-    font-size: 18px;
-    padding: 8px 15px;
-    flex: 1;
-    min-width: 250px;
-}
-
-/* Фото жениха и невесты — текст слева, фото справа */
 .officer-with-photo {
     display: flex;
     gap: 20px;
@@ -305,43 +278,6 @@ body {
     object-fit: cover;
 }
 
-/* Для телефонов — фото остаётся справа, текст слева */
-@media (max-width: 768px) {
-    .officer-with-photo {
-        flex-wrap: nowrap;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .officer-photo {
-        text-align: right;
-        flex-shrink: 0;
-    }
-    
-    .officer-photo img {
-        max-width: 90px;
-    }
-    
-    .officer-info {
-        flex: 1;
-    }
-    
-    .officer-text {
-        font-size: 12px;
-    }
-    
-    .name-line {
-        font-size: 12px;
-        gap: 5px;
-    }
-    
-    .square-field {
-        font-size: 11px;
-        padding: 3px 6px;
-        min-width: auto;
-    }
-}
-
 .officer-section {
     margin: 20px 0;
     padding: 15px 0;
@@ -365,13 +301,6 @@ body {
     gap: 8px;
 }
 
-.empty-field {
-    font-family: 'Courier New', monospace;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-/* Преступление любви */
 .crime-section {
     margin: 20px 0;
     padding: 15px 0;
@@ -413,7 +342,6 @@ body {
     border-top: 1px dashed #ccc;
 }
 
-/* Фотогалерея */
 .photo-gallery {
     display: flex;
     gap: 15px;
@@ -432,7 +360,6 @@ body {
     object-fit: cover;
 }
 
-/* Секции с римскими цифрами */
 .protocol-section {
     margin: 20px 0;
     padding: 12px 0;
@@ -450,7 +377,6 @@ body {
     line-height: 1.5;
 }
 
-/* Форма гостей */
 .guest-form {
     background: white;
 }
@@ -496,7 +422,104 @@ body {
     font-size: 13px;
 }
 
-/* Адаптивность для телефона */
+/* POP-UP */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: popupFadeIn 0.3s ease;
+}
+
+.popup-container {
+    background: white;
+    max-width: 90%;
+    width: 380px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: popupSlideUp 0.3s ease;
+}
+
+.popup-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.popup-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2c2c2c;
+}
+
+.popup-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-btn {
+    background: #2c2c2c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+
+.popup-btn:hover {
+    background: #8b0000;
+    transform: scale(1.02);
+}
+
+@keyframes popupFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popupFadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
     .page-inner {
         padding: 15px;
@@ -529,21 +552,38 @@ body {
         font-size: 14px;
     }
     
-    .officer-photo img {
-        max-width: 100px;
-    }
-    
     .officer-with-photo {
-        flex-direction: column;
-        text-align: center;
+        flex-wrap: nowrap;
+        gap: 15px;
+        align-items: center;
     }
     
-    .officer-name {
-        text-align: center;
+    .officer-photo {
+        text-align: right;
+        flex-shrink: 0;
+    }
+    
+    .officer-photo img {
+        max-width: 90px;
+    }
+    
+    .officer-info {
+        flex: 1;
+    }
+    
+    .officer-text {
+        font-size: 12px;
     }
     
     .name-line {
-        justify-content: center;
+        font-size: 12px;
+        gap: 5px;
+    }
+    
+    .square-field {
+        font-size: 11px;
+        padding: 3px 6px;
+        min-width: auto;
     }
     
     .photo-frame img {
@@ -554,13 +594,22 @@ body {
         padding: 10px;
     }
     
-    .square-field {
-        font-size: 14px;
-        padding: 4px 8px;
+    .popup-container {
+        width: 85%;
+        padding: 25px 20px;
     }
     
-    .bride-square {
-        font-size: 14px;
+    .popup-title {
+        font-size: 16px;
+    }
+    
+    .popup-text {
+        font-size: 12px;
+    }
+    
+    .popup-btn {
+        padding: 10px 20px;
+        font-size: 10px;
     }
 }
 
@@ -580,6 +629,6 @@ body {
     }
     
     .officer-photo img {
-        max-width: 80px;
+        max-width: 70px;
     }
 }

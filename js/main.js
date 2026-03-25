@@ -12,14 +12,14 @@ class ProtocolInvitation {
             'assets/music/music2.mp3'
         ];
         this.currentTrack = 0;
-        this.nextAudio = null; // для предзагрузки
-        this.fadeInterval = null;
+        this.nextAudio = null;
         
         this.init();
         this.setupGuestForm();
         this.setupProgramList();
         this.setupBackNavigation();
         this.setupOpenButton();
+        this.setupPopup();
     }
     
     init() {
@@ -97,7 +97,6 @@ class ProtocolInvitation {
         }
     }
     
-    // Предзагрузка следующего трека
     preloadNextTrack() {
         let nextIndex = this.currentTrack + 1;
         if (nextIndex >= this.playlist.length) {
@@ -124,10 +123,8 @@ class ProtocolInvitation {
             this.music.volume = 1;
             this.updateMusicButton();
             
-            // Предзагружаем следующий трек
             this.preloadNextTrack();
             
-            // Устанавливаем обработчик окончания
             this.music.onended = () => {
                 this.crossfadeToNext();
             };
@@ -139,35 +136,29 @@ class ProtocolInvitation {
     crossfadeToNext() {
         if (!this.isMusicPlaying) return;
         
-        // Определяем следующий трек
         let nextIndex = this.currentTrack + 1;
         if (nextIndex >= this.playlist.length) {
             nextIndex = 0;
         }
         
-        // Если предзагруженный трек есть и готов
         if (this.nextAudio && this.nextAudio.src.includes(this.playlist[nextIndex])) {
             const nextTrack = this.nextAudio;
             
-            // Плавно убавляем текущую громкость
             let volume = 1;
             const fadeOut = setInterval(() => {
                 if (volume <= 0.02) {
                     clearInterval(fadeOut);
                     this.music.pause();
                     
-                    // Переключаем на новый трек
                     this.music.src = nextTrack.src;
                     this.music.load();
                     
-                    // Начинаем играть с громкостью 0
                     this.music.volume = 0;
                     this.music.play().then(() => {
                         this.currentTrack = nextIndex;
                         this.isMusicPlaying = true;
                         this.updateMusicButton();
                         
-                        // Плавно увеличиваем громкость
                         let vol = 0;
                         const fadeIn = setInterval(() => {
                             if (vol >= 0.98) {
@@ -179,10 +170,8 @@ class ProtocolInvitation {
                             }
                         }, 30);
                         
-                        // Предзагружаем следующий трек
                         this.preloadNextTrack();
                         
-                        // Устанавливаем обработчик для следующего окончания
                         this.music.onended = () => {
                             this.crossfadeToNext();
                         };
@@ -193,7 +182,6 @@ class ProtocolInvitation {
                 }
             }, 30);
         } else {
-            // Если предзагрузка не сработала — просто переключаем
             this.playTrack(nextIndex);
         }
     }
@@ -354,6 +342,20 @@ class ProtocolInvitation {
                 photo.style.transform = 'translateY(0)';
             }, 200 + i * 150);
         });
+    }
+    
+    setupPopup() {
+        const popup = document.getElementById('popupOverlay');
+        const closeBtn = document.getElementById('closePopupBtn');
+        
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                if (popup) {
+                    popup.style.display = 'none';
+                }
+                return false;
+            };
+        }
     }
 }
 
