@@ -25,7 +25,6 @@ body {
     width: 100%;
     min-height: 100vh;
     background: white;
-    box-shadow: none;
     backface-visibility: visible;
     transform-style: preserve-3d;
     transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
@@ -135,6 +134,7 @@ body {
     padding: 20px;
 }
 
+/* СТИЛИ ДЛЯ ПЕРВОЙ СТРАНИЦЫ */
 .case-number-main {
     font-size: 36px;
     font-weight: bold;
@@ -179,6 +179,7 @@ body {
     color: white;
 }
 
+/* МУЗЫКАЛЬНАЯ КНОПКА */
 .music-glass-btn {
     position: fixed;
     top: 20px;
@@ -204,6 +205,78 @@ body {
     background: rgba(0,0,0,0.1);
 }
 
+/* ШТАМП */
+.stamp-main {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    color: #8b0000;
+    border: 1px solid #8b0000;
+    padding: 6px 10px;
+    transform: rotate(-3deg);
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* ПРОТОКОЛ (без рамки) */
+.protocol-title {
+    text-align: center;
+    margin: 30px 0 40px 0;
+}
+
+.protocol-main-text {
+    font-family: 'Courier New', monospace;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    margin-bottom: 10px;
+}
+
+.protocol-sub-text {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: #333;
+}
+
+/* КВАДРАТИКИ (как в тетради) */
+.square-field {
+    display: inline-block;
+    background: white;
+    border: 1px solid #aaa;
+    padding: 6px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.name-line .square-field {
+    min-width: 200px;
+}
+
+.bride-name-section {
+    margin: 20px 0;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bride-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.bride-square {
+    font-size: 18px;
+    padding: 8px 15px;
+    flex: 1;
+    min-width: 250px;
+}
+
 /* Фото жениха */
 .officer-with-photo {
     display: flex;
@@ -227,82 +300,14 @@ body {
     max-width: 150px;
     height: auto;
     border-radius: 12px;
-    border: 2px solid #d4af37;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    object-fit: cover;
-}
-
-.stamp-main {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
-    color: #8b0000;
-    border: 1px solid #8b0000;
-    padding: 6px 10px;
-    transform: rotate(-3deg);
-    text-align: center;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.personal-case {
-    text-align: center;
-    margin-bottom: 30px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-}
-
-.case-number {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
-.case-title {
-    font-size: 16px;
-    margin: 10px 0;
-    font-style: italic;
-}
-
-.case-stamp {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
-    border: 1px solid #2c2c2c;
-    display: inline-block;
-    padding: 4px 15px;
-}
-
-.protocol-header {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.protocol-number {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.typewriter-text {
-    font-family: 'Courier New', monospace;
-    font-size: 32px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    background: #f5f5f5;
-    padding: 10px 20px;
-    display: inline-block;
     border: 1px solid #ddd;
-    margin-bottom: 15px;
-}
-
-.protocol-subtitle {
-    font-size: 14px;
-    color: #666;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
 
 .officer-section {
     margin: 20px 0;
-    padding: 15px;
-    border-left: 2px solid #d4af37;
+    padding: 15px 0;
 }
 
 .officer-text {
@@ -312,30 +317,87 @@ body {
 
 .officer-name {
     margin: 10px 0;
-    padding-left: 15px;
 }
 
 .name-line {
-    margin: 5px 0;
+    margin: 8px 0;
     font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.name-value {
+/* Нарождение */
+.birth-section {
+    margin: 20px 0;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.birth-line {
+    font-size: 18px;
     font-weight: bold;
-    border-bottom: 1px dashed #ccc;
-    display: inline-block;
-    padding: 0 5px;
+    letter-spacing: 3px;
 }
 
-.name-card {
-    background: #f9f9f9;
-    padding: 12px 15px;
-    margin: 15px 0;
-    font-family: 'Press Start 2P', cursive;
+.birth-names {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.empty-field {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* Преступление любви */
+.crime-section {
+    margin: 20px 0;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.crime-title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+.crime-number {
     font-size: 14px;
-    border-left: 4px solid #d4af37;
+    margin: 10px 0;
 }
 
+.crime-description {
+    margin: 15px 0;
+    line-height: 1.5;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.circumstances-title {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.circumstances-list {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.resolution {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+/* Фотогалерея */
 .photo-gallery {
     display: flex;
     gap: 15px;
@@ -345,7 +407,6 @@ body {
 
 .photo-frame {
     flex: 1;
-    border: 1px solid #e0e0e0;
     padding: 4px;
 }
 
@@ -355,17 +416,16 @@ body {
     object-fit: cover;
 }
 
+/* Секции с римскими цифрами */
 .protocol-section {
     margin: 20px 0;
-    padding: 12px;
-    border-left: 2px solid #d4af37;
+    padding: 12px 0;
 }
 
 .section-title {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
     display: inline-block;
 }
 
@@ -374,23 +434,9 @@ body {
     line-height: 1.5;
 }
 
-.birth-section, .crime-section {
-    margin: 20px 0;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    text-align: center;
-}
-
-.birth-line, .crime-title {
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
-.circumstances-list {
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
+/* Форма гостей */
+.guest-form {
+    background: white;
 }
 
 .form-group {
@@ -413,6 +459,7 @@ body {
     border: none;
     padding: 8px 16px;
     cursor: pointer;
+    font-family: monospace;
 }
 
 .guest-list {
@@ -420,8 +467,7 @@ body {
 }
 
 .guest-item {
-    padding: 8px;
-    border-bottom: 1px dashed #e0e0e0;
+    padding: 8px 0;
     font-size: 13px;
 }
 
@@ -459,9 +505,12 @@ body {
         transform: rotate(-40deg);
     }
     
-    .typewriter-text {
-        font-size: 24px;
-        padding: 8px 15px;
+    .protocol-main-text {
+        font-size: 32px;
+    }
+    
+    .protocol-sub-text {
+        font-size: 14px;
     }
     
     .officer-photo img {
@@ -475,7 +524,10 @@ body {
     
     .officer-name {
         text-align: center;
-        padding-left: 0;
+    }
+    
+    .name-line {
+        justify-content: center;
     }
     
     .photo-frame img {
@@ -486,8 +538,13 @@ body {
         padding: 10px;
     }
     
-    .name-card {
-        font-size: 12px;
+    .square-field {
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+    
+    .bride-square {
+        font-size: 14px;
     }
 }
 
@@ -502,8 +559,8 @@ body {
         font-size: 14px;
     }
     
-    .typewriter-text {
-        font-size: 20px;
+    .protocol-main-text {
+        font-size: 26px;
     }
     
     .officer-photo img {

@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
         .remove-guest { background: #8b0000 !important; color: white !important; margin-left: 10px; padding: 2px 8px; border: none; cursor: pointer; }
         .remove-guest:hover { background: #5a0000 !important; }
-        .program-item { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+        .program-item { padding: 5px 0; }
     `;
     document.head.appendChild(style);
 });

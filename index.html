@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Личное дело №001 | Воронин & Устинова</title>
+    <title>Личное дело №007 | Воронин & Устинова</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -12,7 +12,7 @@
         <!-- СТРАНИЦА 1: ЛИЧНОЕ ДЕЛО -->
         <div id="page1" class="page page-front">
             <div class="page-inner">
-                <div class="case-number-main">Личное дело № 001</div>
+                <div class="case-number-main">Личное дело № 007</div>
                 <div class="case-title-main">о задержании гражданки<br>с целью последующего бракосочетания</div>
                 <button id="openCaseBtn" class="stamp-btn">ОТКРЫТО</button>
             </div>
@@ -31,27 +31,18 @@
                     <!-- Штамп -->
                     <div class="stamp-main">
                         ВЕЩЕСТВЕННОЕ ДОКАЗАТЕЛЬСТВО<br>
-                        26.06.2026<br>
-                        № 001/42682<br>
+                        06.06.2026<br>
+                        № 007/42682<br>
                         НЕ ВСКРЫВАТЬ!
                     </div>
 
-                    <!-- Личное дело -->
-                    <div class="personal-case">
-                        <div class="case-number">Личное дело № 001</div>
-                        <div class="case-title">О задержании гражданки с целью последующего бракосочетания</div>
-                        <div class="case-stamp">ОТКРЫТО</div>
+                    <!-- ПРОТОКОЛ -->
+                    <div class="protocol-title">
+                        <div class="protocol-main-text">ПРОТОКОЛ</div>
+                        <div class="protocol-sub-text">об административном задержании</div>
                     </div>
 
-                    <!-- Шапка протокола -->
-                    <div class="protocol-header">
-                        <div class="protocol-number">
-                            <div class="typewriter-text">ПРОТОКОЛ</div>
-                            <div class="protocol-subtitle">об административном задержании</div>
-                        </div>
-                    </div>
-
-                    <!-- Уполномоченное лицо с фото -->
+                    <!-- Уполномоченное лицо с фото и квадратиками -->
                     <div class="officer-section">
                         <div class="officer-with-photo">
                             <div class="officer-info">
@@ -59,9 +50,9 @@
                                     Я, уполномоченное лицо, гражданин
                                 </div>
                                 <div class="officer-name">
-                                    <div class="name-line">ФАМИЛИЯ: <span class="name-value" id="groomSurname">ВОРОНИН</span></div>
-                                    <div class="name-line">ИМЯ: <span class="name-value" id="groomName">РОСТИСЛАВ</span></div>
-                                    <div class="name-line">ОТЧЕСТВО: <span class="name-value" id="groomPatronymic">СЕРГЕЕВИЧ</span></div>
+                                    <div class="name-line">ФАМИЛИЯ: <span class="square-field" id="groomSurname">ВОРОНИН</span></div>
+                                    <div class="name-line">ИМЯ: <span class="square-field" id="groomName">РОСТИСЛАВ</span></div>
+                                    <div class="name-line">ОТЧЕСТВО: <span class="square-field" id="groomPatronymic">СЕРГЕЕВИЧ</span></div>
                                 </div>
                                 <div class="officer-text">
                                     Действуя на основании личных намерений, устойчивых чувств и окончательного решения о создании семьи, произвел задержание гражданки:
@@ -73,29 +64,30 @@
                         </div>
                     </div>
 
-                    <!-- Задержанная гражданка -->
-                    <div class="couple-names-animation">
-                        <div class="name-card name-bride" id="brideName">
-                            ЗАДЕРЖАННАЯ: <span class="name-value" id="brideFullName">УСТИНОВА АНАСТАСИЯ МАКСИМОВНА</span>
-                        </div>
-                    </div>
-
-                    <!-- Нарождение -->
-                    <div class="birth-section">
-                        <div class="birth-line">НАРОЖДЕНИЕ</div>
-                        <div class="birth-names">
-                            <div>Фамилия: <span class="empty-field">УСТИНОВА</span></div>
-                            <div>Имя: <span class="empty-field">АНАСТАСИЯ</span></div>
+                    <!-- Задержанная гражданка (как у жениха) -->
+                    <div class="officer-section">
+                        <div class="officer-with-photo">
+                            <div class="officer-info">
+                                <div class="officer-text">
+                                    Задержанная гражданка
+                                </div>
+                                <div class="officer-name">
+                                    <div class="name-line">ФАМИЛИЯ: <span class="square-field" id="brideSurname">УСТИНОВА</span></div>
+                                    <div class="name-line">ИМЯ: <span class="square-field" id="brideName">АНАСТАСИЯ</span></div>
+                                    <div class="name-line">ОТЧЕСТВО: <span class="square-field" id="bridePatronymic">МАКСИМОВНА</span></div>
+                                </div>
+                                <div class="officer-text">
+                                    Задержана за создание семьи без надлежащего уведомления
+                                </div>
+                            </div>
+                            <div class="officer-photo">
+                                <img src="assets/photos/bride-photo.jpg" alt="Фото задержанной">
+                            </div>
                         </div>
                     </div>
 
                     <!-- Преступление любви -->
-                    <div class="crime-section">
-                        <div class="crime-title">ПРЕСТУПЛЕНИЕ ЛЮБВИ</div>
-                        <div class="crime-number">НАРУШЕНИЕ 42682</div>
-                        <div class="crime-description">
-                            Действуя по предварительному взаимному согласию, вступили в сговор с целью создания семьи, совместного ведения хозяйства и пожизненного союза.
-                        </div>
+
                         <div class="circumstances-title">В ходе проверки выявлены следующие обстоятельства:</div>
                         <ul class="circumstances-list">
                             <li>незаконное завладение сердцем;</li>
@@ -106,7 +98,7 @@
                         </ul>
                         <div class="resolution">
                             <strong>[СОСТАНОВЛЕНО]</strong><br>
-                            Назначить процедуру официального бракосочетания на «26» июля 2026 г.
+                            Назначить процедуру официального бракосочетания на «06» июня 2026 г.
                         </div>
                     </div>
 
