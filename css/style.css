@@ -25,10 +25,9 @@ body {
     width: 100%;
     min-height: 100vh;
     background: white;
-    backface-visibility: visible;
+    backface-visibility: hidden;
     transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-origin: right bottom;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-inner {
@@ -47,69 +46,11 @@ body {
 
 .page-back {
     z-index: 10;
-    transform: rotateY(0deg);
+    transform: rotateY(90deg);
+    display: none;
+    background: white;
 }
 
-/* АНИМАЦИЯ ПЕРЕЛИСТЫВАНИЯ */
-.page-front.flipping {
-    animation: pageTurnForward 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    transform-origin: right bottom;
-    z-index: 25;
-}
-
-@keyframes pageTurnForward {
-    0% { transform: rotateY(0deg) rotateX(0deg); }
-    20% { transform: rotateY(-15deg) rotateX(5deg); }
-    50% { transform: rotateY(-45deg) rotateX(12deg); }
-    80% { transform: rotateY(-75deg) rotateX(8deg); }
-    100% { transform: rotateY(-90deg) rotateX(0deg); opacity: 0; visibility: hidden; }
-}
-
-.page-back.revealing {
-    animation: pageRevealForward 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    transform-origin: right bottom;
-    display: block !important;
-    z-index: 15;
-}
-
-@keyframes pageRevealForward {
-    0% { transform: rotateY(90deg) rotateX(0deg); opacity: 0; visibility: visible; }
-    20% { transform: rotateY(75deg) rotateX(8deg); }
-    50% { transform: rotateY(45deg) rotateX(12deg); }
-    80% { transform: rotateY(15deg) rotateX(5deg); }
-    100% { transform: rotateY(0deg) rotateX(0deg); opacity: 1; }
-}
-
-.page-back.closing {
-    animation: pageTurnBackward 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    transform-origin: right bottom;
-    z-index: 15;
-}
-
-@keyframes pageTurnBackward {
-    0% { transform: rotateY(0deg) rotateX(0deg); opacity: 1; }
-    20% { transform: rotateY(15deg) rotateX(5deg); }
-    50% { transform: rotateY(45deg) rotateX(12deg); }
-    80% { transform: rotateY(75deg) rotateX(8deg); }
-    100% { transform: rotateY(90deg) rotateX(0deg); opacity: 0; visibility: hidden; }
-}
-
-.page-front.returning {
-    animation: pageReturnBackward 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    transform-origin: right bottom;
-    display: block !important;
-    z-index: 20;
-}
-
-@keyframes pageReturnBackward {
-    0% { transform: rotateY(-90deg) rotateX(0deg); opacity: 0; visibility: visible; }
-    20% { transform: rotateY(-75deg) rotateX(8deg); }
-    50% { transform: rotateY(-45deg) rotateX(12deg); }
-    80% { transform: rotateY(-15deg) rotateX(5deg); }
-    100% { transform: rotateY(0deg) rotateX(0deg); opacity: 1; }
-}
-
-/* Тень */
 .flip-shadow {
     position: fixed;
     top: 0;
@@ -127,7 +68,6 @@ body {
     opacity: 1;
 }
 
-/* Стили контента */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -151,47 +91,60 @@ body {
     text-align: center;
 }
 
-/* Кнопка ОТКРЫТЬ в стиле Вещественное доказательство */
-.open-stamp {
-    position: relative;
-    display: inline-block;
+/* Кнопка "ОТКРЫТЬ" картинкой */
+.open-stamp-image {
+    display: flex;
+    justify-content: center;
     margin: 40px auto 0 auto;
-    text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
-.open-stamp-text {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
-    color: #8b0000;
-    border: 2px solid #8b0000;
-    padding: 10px 20px;
-    transform: rotate(-5deg);
-    text-align: center;
-    background: white;
-    display: inline-block;
-    letter-spacing: 2px;
-    box-shadow: 3px 3px 0 rgba(139,0,0,0.2);
-}
-
-.open-stamp-btn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+.open-btn-img {
+    width: 200px;
+    height: auto;
     cursor: pointer;
-    background: transparent;
-    border: none;
+    transition: transform 0.2s ease;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 1;
 }
 
-.open-stamp:hover .open-stamp-text {
-    background: #8b0000;
-    color: white;
-    transform: rotate(-3deg) scale(1.02);
-    transition: all 0.2s ease;
+.open-btn-img:hover {
+    transform: scale(1.02);
+}
+/* Печать картинкой */
+.round-stamp {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 20px auto;
+}
+
+.stamp-img {
+    width: 200px;
+    height: auto;
+    display: block;
+}
+
+/* Адаптивность для телефона */
+@media (max-width: 768px) {
+    .open-btn-img {
+        width: 160px;
+    }
+    .stamp-img {
+        width: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .open-btn-img {
+        width: 140px;
+    }
+    .stamp-img {
+        width: 140px;
+    }
 }
 
 /* Музыкальная кнопка */
@@ -220,19 +173,6 @@ body {
     background: rgba(0,0,0,0.1);
 }
 
-/* Штамп */
-.stamp-main {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
-    color: #8b0000;
-    border: 1px solid #8b0000;
-    padding: 6px 10px;
-    transform: rotate(-3deg);
-    text-align: center;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
 /* ПРОТОКОЛ */
 .protocol-title {
     text-align: center;
@@ -249,7 +189,7 @@ body {
 
 .protocol-sub-text {
     font-family: 'Courier New', monospace;
-    font-size: 18px;
+    font-size: 20px;
     color: #333;
 }
 
@@ -271,7 +211,7 @@ body {
     min-width: 200px;
 }
 
-/* Фото жениха и невесты */
+/* Фото */
 .officer-with-photo {
     display: flex;
     gap: 20px;
@@ -293,8 +233,7 @@ body {
     width: 100%;
     max-width: 150px;
     height: auto;
-    border-radius: 12px;
-    border: 1px solid #ddd;
+    border: none;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     object-fit: cover;
 }
@@ -364,7 +303,7 @@ body {
     border-top: 1px dashed #ccc;
 }
 
-/* Фото места проведения */
+/* Фото места */
 .venue-photo {
     margin-top: 20px;
     text-align: center;
@@ -374,9 +313,33 @@ body {
     width: 100%;
     max-width: 500px;
     height: auto;
-    border-radius: 12px;
-    border: 1px solid #ddd;
+    border: none;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Кольца */
+.rings-image {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.rings-image img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border: none;
+    background: transparent;
+}
+
+/* Адрес */
+.highlight-address {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8b0000;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 /* Секции */
@@ -397,20 +360,13 @@ body {
     line-height: 1.5;
 }
 
-/* Цветовая гамма */
-.color-palette {
+/* Цветовая гамма на белом фоне */
+.color-palette-white {
     margin: 20px 0;
     padding: 15px;
-    background: #fafafa;
-    border-radius: 12px;
+    background: white;
     text-align: center;
-}
-
-.color-title {
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
+    border: none;
 }
 
 .color-swatches {
@@ -435,19 +391,59 @@ body {
     font-style: italic;
 }
 
-.color-message {
-    margin-top: 12px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #8B5A2B;
-    letter-spacing: 0.5px;
-    font-style: italic;
-    padding: 8px;
-    background: rgba(139, 90, 43, 0.05);
-    border-radius: 8px;
+/* Чекбокс - единый текст без абзацев */
+.confirm-checkbox {
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    text-align: left;
 }
 
-/* Форма гостей */
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.5;
+    font-family: 'JetBrains Mono', monospace;
+    color: #2c2c2c;
+}
+
+.checkbox-label input {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2c2c2c;
+    background: white;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-label input:checked + .checkbox-custom::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #8b0000;
+    font-weight: bold;
+}
+
+.checkbox-text {
+    flex: 1;
+    color: #2c2c2c;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Форма */
 .guest-form {
     background: white;
 }
@@ -473,6 +469,11 @@ body {
     padding: 8px 16px;
     cursor: pointer;
     font-family: monospace;
+}
+
+.protocol-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .guest-list {
@@ -571,131 +572,119 @@ body {
 }
 
 @keyframes popupSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    .page-inner {
-        padding: 15px;
+    .page-inner { padding: 15px; }
+    .case-number-main { font-size: 28px; letter-spacing: 4px; }
+    .case-title-main { font-size: 18px; margin-bottom: 30px; }
+    .open-stamp-text { font-size: 12px; padding: 8px 16px; }
+    .protocol-main-text { font-size: 32px; }
+    .protocol-sub-text { font-size: 16px; }
+    .officer-with-photo { flex-wrap: nowrap; gap: 15px; align-items: center; }
+    .officer-photo { text-align: right; flex-shrink: 0; }
+    .officer-photo img { max-width: 90px; }
+    .square-field { font-size: 11px; padding: 3px 6px; min-width: auto; }
+    .rings-image img { max-width: 220px; }
+    .color-swatch { width: 35px; height: 35px; }
+    .checkbox-text { font-size: 11px; }
+    .checkbox-note { font-size: 11px; margin-left: 28px; }
+    .protocol-btn { width: 100%; padding: 10px; }
+    .popup-container { width: 85%; padding: 25px 20px; }
+    .popup-title { font-size: 16px; }
+    .popup-text { font-size: 12px; }
+    .popup-btn { padding: 10px 20px; font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+    .case-number-main { font-size: 22px; }
+    .open-stamp-text { font-size: 10px; padding: 6px 12px; }
+    .protocol-main-text { font-size: 26px; }
+    .protocol-sub-text { font-size: 14px; }
+    .officer-photo img { max-width: 70px; }
+    .rings-image img { max-width: 180px; }
+    .color-swatch { width: 30px; height: 30px; }
+    .checkbox-text { font-size: 10px; }
+    .checkbox-note { font-size: 10px; }
+}
+/* Круглая печать */
+.round-stamp {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 20px auto;
+}
+
+.round-stamp-svg {
+    width: 220px;
+    height: 220px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.round-stamp-svg text {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Форма ФИО задержанного в уровень с формой заполнения */
+.officer-name .square-field {
+    min-width: 200px;
+    display: inline-block;
+}
+
+.name-line {
+    margin: 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Адаптивность для печати */
+@media (max-width: 768px) {
+    .round-stamp-svg {
+        width: 180px;
+        height: 180px;
     }
-    
-    .case-number-main {
-        font-size: 28px;
-        letter-spacing: 4px;
+    .round-stamp-svg text {
+        font-size: 8px;
     }
-    
-    .case-title-main {
-        font-size: 18px;
-        margin-bottom: 30px;
-    }
-    
-    .open-stamp-text {
-        font-size: 12px;
-        padding: 8px 16px;
-    }
-    
-    .protocol-main-text {
-        font-size: 32px;
-    }
-    
-    .protocol-sub-text {
-        font-size: 14px;
-    }
-    
-    .officer-with-photo {
-        flex-wrap: nowrap;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .officer-photo {
-        text-align: right;
-        flex-shrink: 0;
-    }
-    
-    .officer-photo img {
-        max-width: 90px;
-    }
-    
-    .officer-info {
-        flex: 1;
-    }
-    
-    .officer-text {
-        font-size: 12px;
-    }
-    
-    .name-line {
-        font-size: 12px;
-        gap: 5px;
-    }
-    
-    .square-field {
-        font-size: 11px;
-        padding: 3px 6px;
-        min-width: auto;
-    }
-    
-    .venue-photo img {
-        max-width: 100%;
-    }
-    
-    .color-swatch {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .container {
-        padding: 10px;
-    }
-    
-    .popup-container {
-        width: 85%;
-        padding: 25px 20px;
-    }
-    
-    .popup-title {
-        font-size: 16px;
-    }
-    
-    .popup-text {
-        font-size: 12px;
-    }
-    
-    .popup-btn {
-        padding: 10px 20px;
-        font-size: 10px;
+    .round-stamp-svg text:last-child {
+        font-size: 7px;
     }
 }
 
 @media (max-width: 480px) {
-    .case-number-main {
-        font-size: 22px;
+    .round-stamp-svg {
+        width: 150px;
+        height: 150px;
     }
-    
-    .open-stamp-text {
-        font-size: 10px;
-        padding: 6px 12px;
+    .round-stamp-svg text {
+        font-size: 7px;
     }
-    
-    .protocol-main-text {
-        font-size: 26px;
+    .round-stamp-svg text:last-child {
+        font-size: 6px;
     }
-    
-    .officer-photo img {
-        max-width: 70px;
-    }
-    
-    .color-swatch {
-        width: 30px;
-        height: 30px;
-    }
+}
+/* ПРИНУДИТЕЛЬНО убираем фон у всех картинок */
+img {
+    background-color: transparent !important;
+    background: transparent !important;
+    mix-blend-mode: normal;
+}
+
+/* Особенно для кольцов */
+.rings-image img,
+.rings-package img,
+.round-stamp img,
+.open-btn-img,
+.stamp-img {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }

@@ -5,14 +5,14 @@ class ProtocolInvitation {
         this.isMusicPlaying = false;
         this.musicStarted = false;
         this.isFlipping = false;
+        this.isOpen = false;
+        this.currentTrack = 0;
+        this.isFading = false;
         
-        // Плейлист
         this.playlist = [
             'assets/music/protocol.mp3',
             'assets/music/music2.mp3'
         ];
-        this.currentTrack = 0;
-        this.nextAudio = null;
         
         this.init();
         this.setupGuestForm();
@@ -27,91 +27,129 @@ class ProtocolInvitation {
         this.renderGuestList();
         this.setupPhotoAnimation();
         this.setupSignatures();
+        this.setupCheckboxLogic();
     }
     
     setupOpenButton() {
         const openBtn = document.getElementById('openCaseBtn');
-        const frontPage = document.getElementById('page1');
-        const backPage = document.getElementById('page2');
-        const shadow = document.getElementById('flipShadow');
         
         if (openBtn) {
             openBtn.addEventListener('click', () => {
-                if (this.isFlipping) return;
+                if (this.isOpen || this.isFlipping) return;
+                
+                const frontPage = document.getElementById('page1');
+                const backPage = document.getElementById('page2');
+                const shadow = document.getElementById('flipShadow');
+                
                 this.isFlipping = true;
-                
                 history.pushState(null, null, window.location.href);
-                shadow.classList.add('active');
                 
-                frontPage.classList.add('flipping');
-                backPage.classList.add('revealing');
+                if (shadow) shadow.classList.add('active');
+                
                 backPage.style.display = 'block';
+                backPage.style.transform = 'rotateY(90deg)';
+                
+                frontPage.style.transition = 'transform 0.5s ease';
+                frontPage.style.transform = 'rotateY(-90deg)';
                 
                 setTimeout(() => {
                     frontPage.style.display = 'none';
-                    frontPage.classList.remove('flipping');
-                    backPage.classList.remove('revealing');
-                    shadow.classList.remove('active');
-                    this.isFlipping = false;
-                    this.startMusicOnPage2();
-                }, 700);
+                    frontPage.style.transform = '';
+                    
+                    backPage.style.transition = 'transform 0.5s ease';
+                    backPage.style.transform = 'rotateY(0deg)';
+                    
+                    setTimeout(() => {
+                        if (shadow) shadow.classList.remove('active');
+                        this.isFlipping = false;
+                        this.isOpen = true;
+                        this.startMusicOnPage2();
+                        setTimeout(() => {
+                            this.setupCheckboxLogic();
+                        }, 300);
+                    }, 500);
+                }, 500);
             });
         }
     }
     
     setupBackNavigation() {
         window.addEventListener('popstate', () => {
-            this.goBackToFirstPage();
+            const frontPage = document.getElementById('page1');
+            const backPage = document.getElementById('page2');
+            const shadow = document.getElementById('flipShadow');
+            
+            if (backPage && backPage.style.display !== 'none' && !this.isFlipping) {
+                this.isFlipping = true;
+                
+                if (this.music && this.isMusicPlaying) {
+                    this.music.pause();
+                    this.isMusicPlaying = false;
+                    this.updateMusicButton();
+                }
+                
+                if (shadow) shadow.classList.add('active');
+                
+                backPage.style.transition = 'transform 0.5s ease';
+                backPage.style.transform = 'rotateY(90deg)';
+                
+                frontPage.style.display = 'block';
+                frontPage.style.transition = 'transform 0.5s ease';
+                frontPage.style.transform = 'rotateY(0deg)';
+                
+                setTimeout(() => {
+                    backPage.style.display = 'none';
+                    backPage.style.transform = '';
+                    frontPage.style.transform = '';
+                    if (shadow) shadow.classList.remove('active');
+                    this.isFlipping = false;
+                    this.isOpen = false;
+                }, 500);
+            }
         });
     }
     
-    goBackToFirstPage() {
-        if (this.isFlipping) return;
-        
-        const frontPage = document.getElementById('page1');
-        const backPage = document.getElementById('page2');
-        const shadow = document.getElementById('flipShadow');
-        
-        if (backPage && backPage.style.display !== 'none') {
-            this.isFlipping = true;
-            
-            if (this.music && this.isMusicPlaying) {
-                this.music.pause();
-                this.isMusicPlaying = false;
-                this.updateMusicButton();
-            }
-            
-            shadow.classList.add('active');
-            
-            backPage.classList.add('closing');
-            frontPage.classList.add('returning');
-            frontPage.style.display = 'block';
-            
-            setTimeout(() => {
-                backPage.style.display = 'none';
-                backPage.classList.remove('closing');
-                frontPage.classList.remove('returning');
-                shadow.classList.remove('active');
-                this.isFlipping = false;
-            }, 700);
+    fadeOut(callback) {
+        if (!this.music || this.music.paused || this.isFading) {
+            if (callback) callback();
+            return;
         }
+        
+        this.isFading = true;
+        let volume = this.music.volume;
+        
+        const fade = setInterval(() => {
+            if (volume <= 0.05) {
+                clearInterval(fade);
+                this.music.volume = 0;
+                this.isFading = false;
+                if (callback) callback();
+            } else {
+                volume -= 0.05;
+                this.music.volume = Math.max(0, volume);
+            }
+        }, 50);
     }
     
-    preloadNextTrack() {
-        let nextIndex = this.currentTrack + 1;
-        if (nextIndex >= this.playlist.length) {
-            nextIndex = 0;
-        }
+    fadeIn() {
+        if (!this.music) return;
         
-        this.nextAudio = new Audio();
-        this.nextAudio.src = this.playlist[nextIndex];
-        this.nextAudio.load();
+        let volume = 0;
+        this.music.volume = 0;
+        
+        const fade = setInterval(() => {
+            if (volume >= 0.95) {
+                clearInterval(fade);
+                this.music.volume = 1;
+            } else {
+                volume += 0.05;
+                this.music.volume = Math.min(1, volume);
+            }
+        }, 50);
     }
     
     playTrack(index) {
-        if (index >= this.playlist.length) {
-            index = 0;
-        }
+        if (index >= this.playlist.length) index = 0;
         
         this.currentTrack = index;
         this.music.src = this.playlist[this.currentTrack];
@@ -120,70 +158,21 @@ class ProtocolInvitation {
         this.music.play().then(() => {
             this.isMusicPlaying = true;
             this.musicStarted = true;
-            this.music.volume = 1;
+            this.fadeIn();
             this.updateMusicButton();
             
-            this.preloadNextTrack();
-            
             this.music.onended = () => {
-                this.crossfadeToNext();
+                this.fadeOut(() => {
+                    let nextIndex = this.currentTrack + 1;
+                    if (nextIndex >= this.playlist.length) {
+                        nextIndex = 1;
+                    }
+                    this.playTrack(nextIndex);
+                });
             };
         }).catch((e) => {
             console.log('Ошибка воспроизведения:', e);
         });
-    }
-    
-    crossfadeToNext() {
-        if (!this.isMusicPlaying) return;
-        
-        let nextIndex = this.currentTrack + 1;
-        if (nextIndex >= this.playlist.length) {
-            nextIndex = 0;
-        }
-        
-        if (this.nextAudio && this.nextAudio.src.includes(this.playlist[nextIndex])) {
-            const nextTrack = this.nextAudio;
-            
-            let volume = 1;
-            const fadeOut = setInterval(() => {
-                if (volume <= 0.02) {
-                    clearInterval(fadeOut);
-                    this.music.pause();
-                    
-                    this.music.src = nextTrack.src;
-                    this.music.load();
-                    
-                    this.music.volume = 0;
-                    this.music.play().then(() => {
-                        this.currentTrack = nextIndex;
-                        this.isMusicPlaying = true;
-                        this.updateMusicButton();
-                        
-                        let vol = 0;
-                        const fadeIn = setInterval(() => {
-                            if (vol >= 0.98) {
-                                clearInterval(fadeIn);
-                                this.music.volume = 1;
-                            } else {
-                                vol += 0.03;
-                                this.music.volume = Math.min(1, vol);
-                            }
-                        }, 30);
-                        
-                        this.preloadNextTrack();
-                        
-                        this.music.onended = () => {
-                            this.crossfadeToNext();
-                        };
-                    }).catch(() => {});
-                } else {
-                    volume -= 0.03;
-                    this.music.volume = Math.max(0, volume);
-                }
-            }, 30);
-        } else {
-            this.playTrack(nextIndex);
-        }
     }
     
     startMusicOnPage2() {
@@ -213,15 +202,12 @@ class ProtocolInvitation {
     setupProgramList() {
         const container = document.getElementById('programList');
         if (container) {
-            container.innerHTML = [
-                '18:00 — Сбор понятых',
-                '18:30 — Оглашение протокола',
-                '19:00 — Церемония',
-                '19:30 — Фотофиксация',
-                '20:00 — Застолье',
-                '22:00 — Танцы',
-                '00:00 — Закрытие дела'
-            ].map(item => `<div class="program-item">${item}</div>`).join('');
+            container.innerHTML = `
+                <div class="program-item">14:30 — Сбор понятых</div>
+                <div class="program-item">15:00 — Оглашение протокола</div>
+                <div class="program-item">__________ — ____________________</div>
+                <div class="program-item">__________ — ____________________</div>
+            `;
         }
     }
     
@@ -247,16 +233,24 @@ class ProtocolInvitation {
     
     addGuest() {
         const input = document.getElementById('guestName');
+        const checkbox = document.getElementById('confirmCheckbox');
+        
         if (!input) return;
         
         let fullName = input.value.trim().toUpperCase();
         if (!fullName) return alert('Заполните ФИО!');
         if (!this.validateName(fullName)) return alert('ФИО: Фамилия Имя Отчество');
+        if (!checkbox || !checkbox.checked) return alert('Подтвердите участие!');
         
         this.guests.push({ id: Date.now(), name: fullName, date: new Date().toLocaleString('ru-RU') });
         this.renderGuestList();
         input.value = '';
+        checkbox.checked = false;
+        const addBtn = document.getElementById('addGuestBtn');
+        if (addBtn) addBtn.disabled = true;
         if (!this.isMusicPlaying) this.playBeep();
+        
+        alert(`Спасибо, ${fullName}! Ваше участие подтверждено. Ждем вас 06.06.2026!`);
     }
     
     validateName(name) {
@@ -300,14 +294,18 @@ class ProtocolInvitation {
         if (!this.music) return;
         
         if (this.isMusicPlaying) {
-            this.music.pause();
-            this.isMusicPlaying = false;
-            this.updateMusicButton();
+            this.fadeOut(() => {
+                this.music.pause();
+                this.isMusicPlaying = false;
+                this.updateMusicButton();
+            });
         } else {
-            this.music.play().catch(() => {});
-            this.isMusicPlaying = true;
-            this.musicStarted = true;
-            this.updateMusicButton();
+            this.music.play().then(() => {
+                this.isMusicPlaying = true;
+                this.musicStarted = true;
+                this.fadeIn();
+                this.updateMusicButton();
+            }).catch(() => {});
         }
     }
     
@@ -333,28 +331,27 @@ class ProtocolInvitation {
     }
     
     setupPhotoAnimation() {
-        document.querySelectorAll('.venue-photo img, .officer-photo img').forEach((photo, i) => {
-            photo.style.opacity = '0';
-            photo.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                photo.style.transition = 'all 0.6s';
-                photo.style.opacity = '1';
-                photo.style.transform = 'translateY(0)';
-            }, 200 + i * 150);
+        document.querySelectorAll('.venue-photo img, .officer-photo img, .rings-image img').forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => img.style.opacity = '1', 200);
         });
     }
     
     setupPopup() {
         const popup = document.getElementById('popupOverlay');
         const closeBtn = document.getElementById('closePopupBtn');
+        if (closeBtn) closeBtn.onclick = () => { if (popup) popup.style.display = 'none'; };
+    }
+    
+    setupCheckboxLogic() {
+        const checkbox = document.getElementById('confirmCheckbox');
+        const addBtn = document.getElementById('addGuestBtn');
         
-        if (closeBtn) {
-            closeBtn.onclick = function() {
-                if (popup) {
-                    popup.style.display = 'none';
-                }
-                return false;
-            };
+        if (checkbox && addBtn) {
+            checkbox.addEventListener('change', () => {
+                addBtn.disabled = !checkbox.checked;
+            });
         }
     }
 }
@@ -364,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const style = document.createElement('style');
     style.textContent = `
-        .remove-guest { background: #8b0000 !important; color: white !important; margin-left: 10px; padding: 2px 8px; border: none; cursor: pointer; }
+        .remove-guest { background: #8b0000 !important; color: white !important; margin-left: 10px; padding: 2px 8px; border: none; cursor: pointer; font-size: 12px; }
         .remove-guest:hover { background: #5a0000 !important; }
         .program-item { padding: 5px 0; }
     `;

@@ -14,10 +14,8 @@
             <div class="page-inner">
                 <div class="case-number-main">Личное дело № 007</div>
                 <div class="case-title-main">о задержании гражданки<br>с целью последующего бракосочетания</div>
-                <!-- Кнопка в стиле Вещественное доказательство -->
-                <div class="open-stamp">
-                    <div class="open-stamp-text">ОТКРЫТЬ</div>
-                    <button id="openCaseBtn" class="open-stamp-btn"></button>
+                <div class="open-stamp-image">
+                  <img id="openCaseBtn" class="open-btn-img" src="assets/photos/open-btn.png" alt="Открыть">
                 </div>
             </div>
         </div>
@@ -28,17 +26,7 @@
                 <div class="container">
                     <!-- Кнопка звука -->
                     <button id="musicToggleBtn" class="music-glass-btn">🔊</button>
-                    <audio id="protocolMusic">
-                        <source src="assets/music/protocol.mp3" type="audio/mpeg">
-                    </audio>
-
-                    <!-- Штамп -->
-                    <div class="stamp-main">
-                        ВЕЩЕСТВЕННОЕ ДОКАЗАТЕЛЬСТВО<br>
-                        06.06.2026<br>
-                        № 007/42682<br>
-                        НЕ ВСКРЫВАТЬ!
-                    </div>
+                    <audio id="protocolMusic"></audio>
 
                     <!-- ПРОТОКОЛ -->
                     <div class="protocol-title">
@@ -111,12 +99,12 @@
                         </div>
                     </div>
 
-                    <!-- I. МЕСТО ПРОВЕДЕНИЯ С ФОТО -->
+                    <!-- I. МЕСТО ПРОВЕДЕНИЯ -->
                     <div class="protocol-section">
                         <div class="section-title">I. МЕСТО ПРОВЕДЕНИЯ</div>
                         <div class="section-content">
                             Торжественное празднование задержания состоится по адресу:<br>
-                            <strong>Санкт-Петербург, проспект Стачек, 45</strong>
+                            <strong class="highlight-address">Санкт-Петербург, проспект Стачек, 45</strong>
                         </div>
                         <div class="venue-photo">
                             <img src="assets/photos/venue.jpg" alt="Место проведения">
@@ -125,18 +113,31 @@
 
                     <!-- II. ПРОГРАММА -->
                     <div class="protocol-section">
-                        <div class="section-title">II. ПРОГРАММА</div>
+                        <div class="section-title">II. ПРОГРАММА ПРОЦЕССУАЛЬНЫХ ДЕЙСТВИЙ</div>
                         <div class="section-content">
                             <div id="programList"></div>
                         </div>
+                        <div class="rings-image">
+                            <img src="assets/photos/rings.png" alt="Кольца">
+                        </div>
                     </div>
 
-                    <!-- III. ФОРМА ОДЕЖДЫ -->
+                    <!-- III. ФОРМА ОДЕЖДЫ И ЦВЕТОВАЯ ГАММА -->
                     <div class="protocol-section">
-                        <div class="section-title">III. ФОРМА ОДЕЖДЫ</div>
+                        <div class="section-title">III. ФОРМА ОДЕЖДЫ И ЦВЕТОВАЯ ГАММА</div>
                         <div class="section-content">
                             В целях соблюдения праздничной дисциплины предписывается:<br>
                             стиль классический, цветовая директива от бежевых до шоколадных оттенков.
+                        </div>
+                        <div class="color-palette-white">
+                            <div class="color-swatches">
+                                <div class="color-swatch" style="background: #F5E6D3;"></div>
+                                <div class="color-swatch" style="background: #D4B8A4;"></div>
+                                <div class="color-swatch" style="background: #B87C4F;"></div>
+                                <div class="color-swatch" style="background: #8B5A2B;"></div>
+                                <div class="color-swatch" style="background: #5D3A1A;"></div>
+                            </div>
+                            <div class="color-note">Бежевые, кофейные, шоколадные оттенки</div>
                         </div>
                     </div>
 
@@ -148,68 +149,67 @@
                             В связи с этим разрешается передача подарков исключительно в денежной форме.
                             <br><br>
                             Средства будут направлены на развитие совместной стратегии и укрепление материально-технической базы семьи.
-                            <br><br>
-                            Передача цветочной продукции не требуется.
                         </div>
                     </div>
 
-                    <!-- V. ДОПОЛНИТЕЛЬНЫЕ РАСПОРЯЖЕНИЯ -->
-                    <div class="protocol-section">
-                        <div class="section-title">V. ДОПОЛНИТЕЛЬНЫЕ РАСПОРЯЖЕНИЯ</div>
-                        <div class="section-content">
-                            1. В целях соблюдения регламента мероприятия и обеспечения контролируемой праздничной обстановки постановлено: лица, не достигшие совершеннолетия, к участию в мероприятии не привлекаются.
-                        </div>
-                    </div>
-
-                    <!-- Форма для гостей с цветовой гаммой -->
+                    <!-- V. ПОДТВЕРЖДЕНИЕ УЧАСТИЯ -->
                     <div class="protocol-section guest-form">
-                        <div class="section-title">VI. ЗАПОЛНЯЕТСЯ НА КАЖДОГО ПОНЯТОГО</div>
-                        
-                        <!-- Цветовая гамма -->
-                        <div class="color-palette">
-                            <div class="color-title">ЦВЕТОВАЯ ГАММА МЕРОПРИЯТИЯ</div>
-                            <div class="color-swatches">
-                                <div class="color-swatch" style="background: #F5E6D3;"></div>
-                                <div class="color-swatch" style="background: #D4B8A4;"></div>
-                                <div class="color-swatch" style="background: #B87C4F;"></div>
-                                <div class="color-swatch" style="background: #8B5A2B;"></div>
-                                <div class="color-swatch" style="background: #5D3A1A;"></div>
-                            </div>
-                            <div class="color-note">Бежевые, кофейные, шоколадные оттенки</div>
-                            <div class="color-message">
-                                ✨ Просим вас поддержать цветовую гамму мероприятия ✨
-                            </div>
+                        <div class="section-title">V. ПОДТВЕРЖДЕНИЕ УЧАСТИЯ</div>
+                        <div class="section-content">
+                            Для участия в процессуальных действиях просим подтвердить личное присутствие.<br>
+                            Свадьба состоится 06.06.2026.
                         </div>
                         
                         <div class="form-group">
                             <label for="guestName">ФИО задерживаемого гостя:</label>
                             <input type="text" id="guestName" placeholder="ФАМИЛИЯ ИМЯ ОТЧЕСТВО">
-                            <button id="addGuestBtn" class="protocol-btn">Внести в протокол</button>
+                            <button id="addGuestBtn" class="protocol-btn" disabled>Внести в протокол</button>
                         </div>
+                        
+                        <div class="confirm-checkbox">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="confirmCheckbox">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Настоящим подтверждается готовность лично присутствовать при приведении приговора в исполнение и разделить один из важнейших моментов в жизни сторон. Стороны дела будут искренне рады видеть указанного понятого в числе свидетелей создания новой семьи и рассчитывают на активное участие в праздничных действиях и веселье без ограничений. Неявка рассматривается как уклонение от участия в историческом событии.</span>
+                            </label>
+                        </div>
+                        
                         <div id="guestListDisplay" class="guest-list"></div>
                     </div>
 
-                    <!-- Подписи (без свидетеля) -->
+                    <!-- VI. ВСТУПЛЕНИЕ В СИЛУ -->
                     <div class="protocol-section">
-                        <div class="section-title">VII. ПОДПИСИ СТОРОН</div>
-                        <div class="signatures">
-                            <div class="signature-line">
-                                Задержанный: _______________ /<span id="signGroom">Воронин Р.С.</span>/
-                            </div>
-                            <div class="signature-line">
-                                Задержанная: _______________ /<span id="signBride">Устинова А.М.</span>/
-                            </div>
+                        <div class="section-title">VI. ВСТУПЛЕНИЕ В СИЛУ</div>
+                        <div class="section-content">
+                            Настоящий протокол вступает в силу с момента официального объявления граждан мужем и женой.
                         </div>
                     </div>
+
+                    <!-- КРУГЛАЯ ПЕЧАТЬ -->
+                    <div class="round-stamp">
+                        <svg viewBox="0 0 200 200" class="round-stamp-svg">
+                            <circle cx="100" cy="100" r="95" fill="none" stroke="#8b0000" stroke-width="2"/>
+                            <text x="100" y="100" text-anchor="middle" dominant-baseline="middle" fill="#8b0000" font-size="10" font-weight="bold">
+                                <tspan x="100" dy="-25">ПРИГОВОР:</tspan>
+                                <tspan x="100" dy="15">ПОЖИЗНЕННО ВМЕСТЕ</tspan>
+                                <tspan x="100" dy="20">* исполнить немедленно *</tspan>
+                            </text>
+                            <text x="100" y="145" text-anchor="middle" fill="#8b0000" font-size="9">
+                                <tspan x="100" dy="0">мера пресечения: брак</tspan>
+                                <tspan x="100" dy="12">наказание: счастье без ограничений</tspan>
+                            </text>
+                            <path d="M100 70 L100 85 M85 100 L100 100 M115 100 L100 100" stroke="#8b0000" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+
                 </div>
             </div>
         </div>
         
-        <!-- Тень при перелистывании -->
         <div id="flipShadow" class="flip-shadow"></div>
     </div>
 
-    <!-- POP-UP ПРЕДУПРЕЖДЕНИЕ -->
+    <!-- POP-UP -->
     <div id="popupOverlay" class="popup-overlay">
         <div class="popup-container">
             <div class="popup-icon">🔊</div>
