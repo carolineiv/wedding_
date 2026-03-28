@@ -19,7 +19,6 @@ body {
     perspective: 2000px;
 }
 
-/* Страницы */
 .page {
     position: relative;
     width: 100%;
@@ -74,7 +73,6 @@ body {
     padding: 20px;
 }
 
-/* СТИЛИ ДЛЯ ПЕРВОЙ СТРАНИЦЫ */
 .case-number-main {
     font-size: 36px;
     font-weight: bold;
@@ -91,7 +89,6 @@ body {
     text-align: center;
 }
 
-/* Кнопка "ОТКРЫТЬ" картинкой */
 .open-stamp-image {
     display: flex;
     justify-content: center;
@@ -103,51 +100,15 @@ body {
     height: auto;
     cursor: pointer;
     transition: transform 0.2s ease;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-    -webkit-appearance: none;
-    appearance: none;
-    opacity: 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .open-btn-img:hover {
     transform: scale(1.02);
 }
-/* Печать картинкой */
-.round-stamp {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto 20px auto;
-}
 
-.stamp-img {
-    width: 200px;
-    height: auto;
-    display: block;
-}
-
-/* Адаптивность для телефона */
-@media (max-width: 768px) {
-    .open-btn-img {
-        width: 160px;
-    }
-    .stamp-img {
-        width: 160px;
-    }
-}
-
-@media (max-width: 480px) {
-    .open-btn-img {
-        width: 140px;
-    }
-    .stamp-img {
-        width: 140px;
-    }
-}
-
-/* Музыкальная кнопка */
 .music-glass-btn {
     position: fixed;
     top: 20px;
@@ -173,7 +134,6 @@ body {
     background: rgba(0,0,0,0.1);
 }
 
-/* ПРОТОКОЛ */
 .protocol-title {
     text-align: center;
     margin: 30px 0 40px 0;
@@ -193,7 +153,6 @@ body {
     color: #333;
 }
 
-/* Квадратики */
 .square-field {
     display: inline-block;
     background: white;
@@ -205,13 +164,13 @@ body {
     letter-spacing: 1px;
     background-color: #fff;
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    min-width: 180px;
 }
 
 .name-line .square-field {
     min-width: 200px;
 }
 
-/* Фото */
 .officer-with-photo {
     display: flex;
     gap: 20px;
@@ -261,7 +220,6 @@ body {
     gap: 8px;
 }
 
-/* Преступление любви */
 .crime-section {
     margin: 20px 0;
     padding: 15px 0;
@@ -303,7 +261,6 @@ body {
     border-top: 1px dashed #ccc;
 }
 
-/* Фото места */
 .venue-photo {
     margin-top: 20px;
     text-align: center;
@@ -317,7 +274,6 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Кольца */
 .rings-image {
     margin-top: 25px;
     text-align: center;
@@ -331,7 +287,6 @@ body {
     background: transparent;
 }
 
-/* Адрес */
 .highlight-address {
     font-size: 16px;
     font-weight: bold;
@@ -342,7 +297,6 @@ body {
     margin-top: 5px;
 }
 
-/* Секции */
 .protocol-section {
     margin: 20px 0;
     padding: 12px 0;
@@ -360,7 +314,6 @@ body {
     line-height: 1.5;
 }
 
-/* Цветовая гамма на белом фоне */
 .color-palette-white {
     margin: 20px 0;
     padding: 15px;
@@ -391,7 +344,6 @@ body {
     font-style: italic;
 }
 
-/* Чекбокс - единый текст без абзацев */
 .confirm-checkbox {
     margin: 20px 0;
     padding: 15px;
@@ -443,7 +395,6 @@ body {
     line-height: 1.5;
 }
 
-/* Форма */
 .guest-form {
     background: white;
 }
@@ -486,17 +437,18 @@ body {
     border-bottom: 1px dashed #eee;
 }
 
-/* Подписи */
-.signatures {
-    margin-top: 15px;
+.round-stamp {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 20px auto;
 }
 
-.signature-line {
-    margin: 10px 0;
-    font-size: 13px;
+.stamp-img {
+    width: 200px;
+    height: auto;
+    display: block;
 }
 
-/* POP-UP */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -576,12 +528,11 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .page-inner { padding: 15px; }
     .case-number-main { font-size: 28px; letter-spacing: 4px; }
     .case-title-main { font-size: 18px; margin-bottom: 30px; }
-    .open-stamp-text { font-size: 12px; padding: 8px 16px; }
+    .open-btn-img { width: 160px; }
     .protocol-main-text { font-size: 32px; }
     .protocol-sub-text { font-size: 16px; }
     .officer-with-photo { flex-wrap: nowrap; gap: 15px; align-items: center; }
@@ -591,8 +542,8 @@ body {
     .rings-image img { max-width: 220px; }
     .color-swatch { width: 35px; height: 35px; }
     .checkbox-text { font-size: 11px; }
-    .checkbox-note { font-size: 11px; margin-left: 28px; }
     .protocol-btn { width: 100%; padding: 10px; }
+    .stamp-img { width: 160px; }
     .popup-container { width: 85%; padding: 25px 20px; }
     .popup-title { font-size: 16px; }
     .popup-text { font-size: 12px; }
@@ -601,90 +552,11 @@ body {
 
 @media (max-width: 480px) {
     .case-number-main { font-size: 22px; }
-    .open-stamp-text { font-size: 10px; padding: 6px 12px; }
+    .open-btn-img { width: 140px; }
     .protocol-main-text { font-size: 26px; }
     .protocol-sub-text { font-size: 14px; }
     .officer-photo img { max-width: 70px; }
     .rings-image img { max-width: 180px; }
     .color-swatch { width: 30px; height: 30px; }
-    .checkbox-text { font-size: 10px; }
-    .checkbox-note { font-size: 10px; }
-}
-/* Круглая печать */
-.round-stamp {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto 20px auto;
-}
-
-.round-stamp-svg {
-    width: 220px;
-    height: 220px;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-}
-
-.round-stamp-svg text {
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-/* Форма ФИО задержанного в уровень с формой заполнения */
-.officer-name .square-field {
-    min-width: 200px;
-    display: inline-block;
-}
-
-.name-line {
-    margin: 8px 0;
-    font-size: 14px;
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-/* Адаптивность для печати */
-@media (max-width: 768px) {
-    .round-stamp-svg {
-        width: 180px;
-        height: 180px;
-    }
-    .round-stamp-svg text {
-        font-size: 8px;
-    }
-    .round-stamp-svg text:last-child {
-        font-size: 7px;
-    }
-}
-
-@media (max-width: 480px) {
-    .round-stamp-svg {
-        width: 150px;
-        height: 150px;
-    }
-    .round-stamp-svg text {
-        font-size: 7px;
-    }
-    .round-stamp-svg text:last-child {
-        font-size: 6px;
-    }
-}
-/* ПРИНУДИТЕЛЬНО убираем фон у всех картинок */
-img {
-    background-color: transparent !important;
-    background: transparent !important;
-    mix-blend-mode: normal;
-}
-
-/* Особенно для кольцов */
-.rings-image img,
-.rings-package img,
-.round-stamp img,
-.open-btn-img,
-.stamp-img {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    .stamp-img { width: 140px; }
 }

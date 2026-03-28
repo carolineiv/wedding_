@@ -28,37 +28,81 @@ class ProtocolInvitation {
         this.setupPhotoAnimation();
         this.setupSignatures();
         this.setupCheckboxLogic();
+        this.animateNamesOnScroll();
+    }
+    
+    animateNamesOnScroll() {
+        const groomSurname = document.getElementById('groomSurname');
+        const groomName = document.getElementById('groomName');
+        const groomPatronymic = document.getElementById('groomPatronymic');
+        const brideSurname = document.getElementById('brideSurname');
+        const brideName = document.getElementById('brideName');
+        const bridePatronymic = document.getElementById('bridePatronymic');
+        
+        const groomSurnameText = 'ВОРОНИН';
+        const groomNameText = 'РОСТИСЛАВ';
+        const groomPatronymicText = 'СЕРГЕЕВИЧ';
+        const brideSurnameText = 'УСТИНОВА';
+        const brideNameText = 'АНАСТАСИЯ';
+        const bridePatronymicText = 'МАКСИМОВНА';
+        
+        function typeText(element, text, delay, callback) {
+            if (!element) return;
+            let i = 0;
+            element.textContent = '';
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text[i];
+                    i++;
+                    setTimeout(type, delay);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    if (target.id === 'groomSurname') typeText(target, groomSurnameText, 80);
+                    else if (target.id === 'groomName') setTimeout(() => typeText(target, groomNameText, 80), 300);
+                    else if (target.id === 'groomPatronymic') setTimeout(() => typeText(target, groomPatronymicText, 80), 600);
+                    else if (target.id === 'brideSurname') setTimeout(() => typeText(target, brideSurnameText, 80), 1200);
+                    else if (target.id === 'brideName') setTimeout(() => typeText(target, brideNameText, 80), 1500);
+                    else if (target.id === 'bridePatronymic') setTimeout(() => typeText(target, bridePatronymicText, 80), 1800);
+                    observer.unobserve(target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        ['groomSurname', 'groomName', 'groomPatronymic', 'brideSurname', 'brideName', 'bridePatronymic'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
     }
     
     setupOpenButton() {
         const openBtn = document.getElementById('openCaseBtn');
-        
         if (openBtn) {
             openBtn.addEventListener('click', () => {
                 if (this.isOpen || this.isFlipping) return;
-                
                 const frontPage = document.getElementById('page1');
                 const backPage = document.getElementById('page2');
                 const shadow = document.getElementById('flipShadow');
-                
                 this.isFlipping = true;
                 history.pushState(null, null, window.location.href);
-                
                 if (shadow) shadow.classList.add('active');
-                
                 backPage.style.display = 'block';
                 backPage.style.transform = 'rotateY(90deg)';
-                
                 frontPage.style.transition = 'transform 0.5s ease';
                 frontPage.style.transform = 'rotateY(-90deg)';
-                
                 setTimeout(() => {
                     frontPage.style.display = 'none';
                     frontPage.style.transform = '';
-                    
                     backPage.style.transition = 'transform 0.5s ease';
                     backPage.style.transform = 'rotateY(0deg)';
-                    
                     setTimeout(() => {
                         if (shadow) shadow.classList.remove('active');
                         this.isFlipping = false;
@@ -66,6 +110,7 @@ class ProtocolInvitation {
                         this.startMusicOnPage2();
                         setTimeout(() => {
                             this.setupCheckboxLogic();
+                            this.animateNamesOnScroll();
                         }, 300);
                     }, 500);
                 }, 500);
@@ -78,25 +123,19 @@ class ProtocolInvitation {
             const frontPage = document.getElementById('page1');
             const backPage = document.getElementById('page2');
             const shadow = document.getElementById('flipShadow');
-            
             if (backPage && backPage.style.display !== 'none' && !this.isFlipping) {
                 this.isFlipping = true;
-                
                 if (this.music && this.isMusicPlaying) {
                     this.music.pause();
                     this.isMusicPlaying = false;
                     this.updateMusicButton();
                 }
-                
                 if (shadow) shadow.classList.add('active');
-                
                 backPage.style.transition = 'transform 0.5s ease';
                 backPage.style.transform = 'rotateY(90deg)';
-                
                 frontPage.style.display = 'block';
                 frontPage.style.transition = 'transform 0.5s ease';
                 frontPage.style.transform = 'rotateY(0deg)';
-                
                 setTimeout(() => {
                     backPage.style.display = 'none';
                     backPage.style.transform = '';
@@ -114,10 +153,8 @@ class ProtocolInvitation {
             if (callback) callback();
             return;
         }
-        
         this.isFading = true;
         let volume = this.music.volume;
-        
         const fade = setInterval(() => {
             if (volume <= 0.05) {
                 clearInterval(fade);
@@ -133,10 +170,8 @@ class ProtocolInvitation {
     
     fadeIn() {
         if (!this.music) return;
-        
         let volume = 0;
         this.music.volume = 0;
-        
         const fade = setInterval(() => {
             if (volume >= 0.95) {
                 clearInterval(fade);
@@ -150,36 +185,27 @@ class ProtocolInvitation {
     
     playTrack(index) {
         if (index >= this.playlist.length) index = 0;
-        
         this.currentTrack = index;
         this.music.src = this.playlist[this.currentTrack];
         this.music.load();
-        
         this.music.play().then(() => {
             this.isMusicPlaying = true;
             this.musicStarted = true;
             this.fadeIn();
             this.updateMusicButton();
-            
             this.music.onended = () => {
                 this.fadeOut(() => {
                     let nextIndex = this.currentTrack + 1;
-                    if (nextIndex >= this.playlist.length) {
-                        nextIndex = 1;
-                    }
+                    if (nextIndex >= this.playlist.length) nextIndex = 1;
                     this.playTrack(nextIndex);
                 });
             };
-        }).catch((e) => {
-            console.log('Ошибка воспроизведения:', e);
-        });
+        }).catch((e) => console.log('Ошибка:', e));
     }
     
     startMusicOnPage2() {
         setTimeout(() => {
-            if (!this.musicStarted) {
-                this.playTrack(0);
-            }
+            if (!this.musicStarted) this.playTrack(0);
         }, 500);
     }
     
@@ -187,13 +213,11 @@ class ProtocolInvitation {
         const addBtn = document.getElementById('addGuestBtn');
         const guestInput = document.getElementById('guestName');
         const musicBtn = document.getElementById('musicToggleBtn');
-        
         if (addBtn) addBtn.addEventListener('click', () => this.addGuest());
         if (guestInput) guestInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.addGuest();
         });
         if (musicBtn) musicBtn.addEventListener('click', () => this.toggleMusic());
-        
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('protocolGuests', JSON.stringify(this.guests));
         });
@@ -220,14 +244,7 @@ class ProtocolInvitation {
             if (el) el.textContent = value;
         };
         
-        setText('groomSurname', groom.surname);
-        setText('groomName', groom.name);
-        setText('groomPatronymic', groom.patronymic);
         setText('signGroom', `${groom.surname} ${groom.name[0]}.${groom.patronymic[0]}.`);
-        
-        setText('brideSurname', bride.surname);
-        setText('brideName', bride.name);
-        setText('bridePatronymic', bride.patronymic);
         setText('signBride', `${bride.surname} ${bride.name[0]}.${bride.patronymic[0]}.`);
     }
     
