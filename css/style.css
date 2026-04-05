@@ -171,7 +171,6 @@ body {
     min-width: 200px;
 }
 
-/* ФОТО ЖЕНИХА И НЕВЕСТЫ — адаптивно, увеличено */
 .officer-with-photo {
     display: flex;
     gap: 20px;
@@ -191,7 +190,7 @@ body {
 
 .officer-photo img {
     width: 100%;
-    max-width: 180px;   
+    max-width: 180px;
     height: auto;
     border: none;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -221,7 +220,6 @@ body {
     gap: 8px;
 }
 
-/* ПРЕСТУПЛЕНИЕ ЛЮБВИ — текст по левому краю, точки обычные */
 .crime-section {
     margin: 20px 0;
     padding: 15px 0;
@@ -304,10 +302,12 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+/* === КОЛЬЦА И ПРОГРАММА === */
 .program-with-rings {
     display: flex;
-    gap: 30px;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
@@ -317,15 +317,18 @@ body {
 
 .rings-image {
     flex: 1;
-    text-align: center;
+    text-align: right;
+    margin-top: 0;
+    position: static;
+    left: auto;
 }
 
 .rings-image img {
-    width: 100%;
     max-width: 280px;
+    width: 100%;
     height: auto;
-    border: none;
-    background: transparent;
+    transform: rotate(9deg);
+    transition: transform 0.2s ease;
 }
 
 .protocol-section {
@@ -499,7 +502,7 @@ body {
 .stamp-overlay {
     position: absolute;
     top: 50%;
-    left: 95%;
+    left: 50%;
     transform: translate(-50%, -50%) rotate(-8deg);
     pointer-events: none;
     z-index: 5;
@@ -614,7 +617,7 @@ body {
     .officer-photo { text-align: right; flex-shrink: 0; }
     .officer-photo img { max-width: 130px; }
     .square-field { font-size: 11px; padding: 3px 6px; min-width: auto; }
-    .rings-image img { max-width: 220px; }
+    .rings-image img { max-width: 180px; }
     .address-field { font-size: 12px; padding: 4px 8px; }
     .color-swatch { width: 35px; height: 35px; }
     .checkbox-text-large { font-size: 11px; }
@@ -647,58 +650,29 @@ body {
     .crime-description { font-size: 11px; }
     .circumstances-list li { font-size: 11px; }
 }
-/* ПРИНУДИТЕЛЬНОЕ ОТОБРАЖЕНИЕ КОЛЕЦ НА ТЕЛЕФОНЕ */
-.rings-image {
-    text-align: center;
-    width: 100%;
-}
-
-.rings-image img {
-    width: auto;
-    max-width: 90vw !important;
-    height: auto;
-    display: inline-block;
-    background: transparent;
-}
-
-/* Для совсем маленьких экранов */
-@media (max-width: 600px) {
-    .rings-image img {
-        max-width: 95vw !important;
-        width: 280px;
-    }
-}
-
-/* Если обрезается родителем */
-.program-with-rings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.program-content {
-    width: 100%;
-}
-
-.rings-image {
-    order: 1;
-    margin-top: 15px;
-}
-/* ТЕСТ: очень маленькие кольца на телефоне */
 @media (max-width: 768px) {
+    .program-with-rings {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+    }
+
+    .program-content {
+        flex: 2 !important;
+    }
+
+    .rings-image {
+        flex: 0 0 auto !important;
+        text-align: right !important;
+        margin-top: 0 !important;
+    }
+
     .rings-image img {
-        max-width: 80px !important;
-        width: 80px !important;
+        max-width: 180px !important;
+        width: 180px !important;
         height: auto !important;
-        display: block !important;
-        margin: 0 auto !important;
-        border: 2px solid red !important;   /* красная рамка для проверки */
-        background: yellow !important;      /* жёлтый фон для проверки */
-    }
-}
-@media (max-width: 768px) {
-    .officer-photo img {
-        max-width: 260px !important;   /* поменяй под себя */
+        transform: rotate(9deg);
     }
 }
