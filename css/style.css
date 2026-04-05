@@ -191,7 +191,7 @@ body {
 
 .officer-photo img {
     width: 100%;
-    max-width: 200px;   
+    max-width: 180px;   
     height: auto;
     border: none;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -695,5 +695,10 @@ body {
         margin: 0 auto !important;
         border: 2px solid red !important;   /* красная рамка для проверки */
         background: yellow !important;      /* жёлтый фон для проверки */
+    }
+}
+@media (max-width: 768px) {
+    .officer-photo img {
+        max-width: 260px !important;   /* поменяй под себя */
     }
 }
