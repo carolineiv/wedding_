@@ -663,7 +663,7 @@ body {
     /* === 2. КОЛЬЦА (положение и размер) === */
     .rings-image {
         width: 110px;          /* ← ширина блока колец */
-        margin-left: 20px;     /* ← сдвиг вправо */
+        margin-left: 10px;     /* ← сдвиг вправо */
         margin-top: 0px;       /* ← сдвиг вниз/вверх */
     }
     .rings-image img {
