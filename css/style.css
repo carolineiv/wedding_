@@ -8,19 +8,15 @@ body {
     background: white;
     font-family: 'JetBrains Mono', monospace;
     min-height: 100vh;
-    overflow-x: hidden;
-    width: 100%;
 }
 
 .book-container {
     position: relative;
     width: 100%;
-    max-width: 100vw;
     min-height: 100vh;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     perspective: 2000px;
-    overflow-x: hidden;
 }
 
 .page {
@@ -35,9 +31,11 @@ body {
 
 .page-inner {
     padding: 20px;
-    width: 100%;
-    max-width: 100vw;
-    margin: 0 auto;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .page-front {
@@ -70,8 +68,7 @@ body {
 }
 
 .container {
-    max-width: 900px;
-    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -114,41 +111,28 @@ body {
 
 .music-glass-btn {
     position: fixed;
-    top: 12px;
-    right: 12px;
-
-    width: 46px;
-    height: 46px;
-
-    border-radius: 50%;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.05);
     border: none;
-
-    font-size: 22px;
+    font-size: 28px;
     cursor: pointer;
-
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: rgba(255,255,255,0.35);
-    backdrop-filter: blur(8px);
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-
-    opacity: 0.45;
-    transition: all 0.25s ease;
-
-    z-index: 5000;
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0.5;
+    transition: all 0.3s;
 }
+
 .music-glass-btn:hover {
     opacity: 1;
-    transform: scale(1.08);
+    background: rgba(0,0,0,0.1);
 }
-
-.music-glass-btn:active {
-    transform: scale(0.95);
-}
-
 
 .protocol-title {
     text-align: center;
@@ -187,11 +171,12 @@ body {
     min-width: 200px;
 }
 
+/* ФОТО ЖЕНИХА И НЕВЕСТЫ — адаптивно, увеличено */
 .officer-with-photo {
     display: flex;
     gap: 20px;
-    align-items: flex-start;
-    flex-wrap: nowrap;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 20px 0;
 }
 
@@ -206,12 +191,11 @@ body {
 
 .officer-photo img {
     width: 100%;
-    max-width: 150px; /* регулируй размер здесь */
+    max-width: 150px;   /* ← УВЕЛИЧЬ ЗДЕСЬ (было 153px) */
     height: auto;
     border: none;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     object-fit: cover;
-    border-radius: 6px;
 }
 
 .officer-section {
@@ -237,7 +221,7 @@ body {
     gap: 8px;
 }
 
-/* ПРЕСТУПЛЕНИЕ ЛЮБВИ — текст уменьшен, выравнивание по левому краю */
+/* ПРЕСТУПЛЕНИЕ ЛЮБВИ — текст по левому краю, точки обычные */
 .crime-section {
     margin: 20px 0;
     padding: 15px 0;
@@ -274,78 +258,24 @@ body {
     text-align: left;
     margin-left: 20px;
     margin-top: 10px;
-    list-style-type: none;
     padding-left: 0;
 }
 
 .circumstances-list li {
-    position: relative;
-    padding-left: 18px;
     margin-bottom: 6px;
     font-size: 13px;
     line-height: 1.4;
-}
-
-.circumstances-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #333;
-    font-size: 12px;
 }
 
 .resolution {
     margin-top: 15px;
     padding-top: 10px;
-    padding-bottom: 18px;
     text-align: left;
-    border-bottom: 1px dashed rgba(0,0,0,0.08);
 }
-.resolution-list, 
-.violations-list {
-    margin-top: 10px;       /* расстояние сверху */
-    margin-left: 0;         /* обнуляем левый отступ */
-    padding-left: 20px;     /* отступ для точек/пунктов */
-    list-style: none;       /* убираем стандартные точки */
-}
-
-.resolution-list li {
-    position: relative;
-    padding-left: 18px;
-    margin-bottom: 6px;
-    font-size: 13px;
-    line-height: 1.4;
-    list-style: none;
-}
-
-.resolution-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    
-}
-
 
 .resolution strong {
     display: block;
     text-align: center;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-}
-
-.resolution br {
-    display: none;
-}
-
-.resolution-line {
-    margin-top: 15px;
-    border-top: 1px dashed #ccc;
-}
-.resolution-title {
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
 }
 
 .address-field {
@@ -388,17 +318,14 @@ body {
 .rings-image {
     flex: 1;
     text-align: center;
-    min-width: 160px;
 }
 
 .rings-image img {
     width: 100%;
-    max-width: 260px;
+    max-width: 280px;
     height: auto;
     border: none;
     background: transparent;
-    display: block;
-    margin: 0 auto;
 }
 
 .protocol-section {
@@ -572,7 +499,7 @@ body {
 .stamp-overlay {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 95%;
     transform: translate(-50%, -50%) rotate(-8deg);
     pointer-events: none;
     z-index: 5;
@@ -685,7 +612,7 @@ body {
     .protocol-sub-text { font-size: 16px; }
     .officer-with-photo { flex-wrap: nowrap; gap: 15px; align-items: center; }
     .officer-photo { text-align: right; flex-shrink: 0; }
-    .officer-photo img { max-width: 95px; }
+    .officer-photo img { max-width: 130px; }
     .square-field { font-size: 11px; padding: 3px 6px; min-width: auto; }
     .rings-image img { max-width: 220px; }
     .address-field { font-size: 12px; padding: 4px 8px; }
@@ -705,32 +632,6 @@ body {
     .crime-description { font-size: 12px; }
     .circumstances-list li { font-size: 12px; }
     .resolution { font-size: 12px; text-align: left; }
-    .music-glass-btn {
-    top: 8px;
-    right: 8px;
-    width: 42px;
-    height: 42px;
-    font-size: 20px;
-    .program-with-rings {
-    flex-direction: column;
-    align-items: center;
-}
-
-.rings-image {
-    width: 100%;
-    margin-top: 20px;
-}
-.rings-photo {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto; /* по центру и с отступом сверху/снизу */
-}
-
-.rings-image img {
-    max-width: 200px;
-}
-}
 }
 
 @media (max-width: 480px) {
@@ -738,23 +639,11 @@ body {
     .open-btn-img { width: 180px; }
     .protocol-main-text { font-size: 26px; }
     .protocol-sub-text { font-size: 14px; }
-    .officer-photo img { max-width: 75px; }
+    .officer-photo img { max-width: 100px; }
     .rings-image img { max-width: 180px; }
     .color-swatch { width: 30px; height: 30px; }
     .stamp-on-text-img { width: 100px; }
     .stamp-text { font-size: 11px; padding: 12px; }
     .crime-description { font-size: 11px; }
     .circumstances-list li { font-size: 11px; }
-}
-img {
-    max-width: 100%;
-    height: auto;
-}
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-* {
-    max-width: 100%;
 }
