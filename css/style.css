@@ -720,6 +720,12 @@ body {
     width: 100%;
     margin-top: 20px;
 }
+.rings-photo {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* по центру и с отступом сверху/снизу */
+}
 
 .rings-image img {
     max-width: 200px;
