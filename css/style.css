@@ -1,4 +1,3 @@
-/* ========== ВСЯ ТВОЯ СТАРАЯ ВЕРСИЯ CSS (БЕЗ ИЗМЕНЕНИЙ) ========== */
 * {
     margin: 0;
     padding: 0;
@@ -172,7 +171,7 @@ body {
     min-width: 200px;
 }
 
-/* ФОТО ЖЕНИХА И НЕВЕСТЫ — КОМПЬЮТЕР (НЕ ТРОГАЕМ) */
+/* ФОТО ЖЕНИХА И НЕВЕСТЫ — КОМПЬЮТЕР */
 .officer-with-photo {
     display: flex;
     gap: 20px;
@@ -304,7 +303,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* КОЛЬЦА И ПРОГРАММА */
+/* КОЛЬЦА И ПРОГРАММА (КОМПЬЮТЕР) */
 .program-with-rings {
     display: flex;
     align-items: flex-start;
@@ -313,8 +312,8 @@ body {
 }
 
 .program-content {
-    flex: 6;            /* можешь менять */
-    max-width: 100%;     /* или тут */
+    flex: 6;
+    max-width: 100%;
     min-width: 0;
 }
 
@@ -419,7 +418,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 16px;
+    font-size: 29px;
     color: #8b0000;
     font-weight: bold;
 }
@@ -606,7 +605,7 @@ body {
     }
 }
 
-/* ========== БАЗОВАЯ АДАПТАЦИЯ (ТОЛЬКО РАЗМЕРЫ) ========== */
+/* ========== БАЗОВАЯ АДАПТАЦИЯ ========== */
 @media (max-width: 768px) {
     .page-inner { padding: 15px; }
     .case-number-main { font-size: 28px; letter-spacing: 4px; }
@@ -633,25 +632,6 @@ body {
     .crime-description { font-size: 12px; }
     .circumstances-list li { font-size: 12px; }
     .resolution { font-size: 12px; text-align: left; }
-    .program-item {
-    font-size: 10px;
-    line-height: 1.3;
-    .program-with-rings {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-}
-.rings-image {
-    flex-shrink: 0;
-    width: 110px;
-    margin-left: 40px !important;
-}
-.rings-image img {
-    width: 100px;
-    transform: rotate(9deg);
-}
-}
 }
 
 @media (max-width: 480px) {
@@ -667,10 +647,57 @@ body {
     .circumstances-list li { font-size: 11px; }
 }
 
-/* ========== РЕГУЛИРОВКИ ТОЛЬКО ДЛЯ ТЕЛЕФОНА ========== */
+/* ========== ТЕЛЕФОН — РУЧНЫЕ НАСТРОЙКИ ========== */
 @media (max-width: 768px) {
 
-    /* ФОТО ЖЕНИХА И НЕВЕСТЫ — ГАРАНТИРОВАННО РЯДОМ */
+    /* === 1. ТЕКСТ ПРОГРАММЫ (ширина в пикселях) === */
+    .program-content {
+        flex: none;
+        width: 220px;          /* ← меняй: ширина текста */
+    }
+    .program-item {
+        font-size: 10px;
+        line-height: 1.3;
+    }
+
+    /* === 2. КОЛЬЦА (положение и размер) === */
+    .rings-image {
+        width: 110px;          /* ← ширина блока колец */
+        margin-left: 20px;     /* ← сдвиг вправо */
+        margin-top: 0px;       /* ← сдвиг вниз/вверх */
+    }
+    .rings-image img {
+        width: 100%;
+        transform: rotate(9deg);
+    }
+    @media (max-width: 768px) {
+    /* ЖЁСТКОЕ ВЫРАВНИВАНИЕ КОЛЕЦ И ТЕКСТА */
+    .program-with-rings {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .program-content {
+        flex: 1;
+        width: auto;
+    }
+    .rings-image {
+        flex: 0 0 auto;
+        width: 120px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .rings-image img {
+        width: 100%;
+        transform: rotate(9deg);
+        display: block;
+    }
+}
+
+
+    /* === 3. ФОТО ЖЕНИХА И НЕВЕСТЫ === */
     .officer-with-photo {
         display: flex;
         flex-direction: row !important;
@@ -683,49 +710,112 @@ body {
     }
     .officer-photo {
         flex: 0 0 auto !important;
-        width: 110px;
+        width: 100px;
     }
     .officer-photo img {
-        width: 102px;
+        width: 100px;
     }
 
-        /* ----- ФОТО ЖЕНИХА ( всегда) ----- */
+    /* сдвиг фото жениха вниз */
     .officer-section:first-child .officer-photo {
+        margin-top: 30px;      /* ← положительное = вниз */
+    }
+
+    /* === 4. ПОЛЕ ВВОДА ГОСТЯ (вниз) === */
+    .guest-form .form-group {
         display: flex;
         flex-direction: column;
+        align-items: stretch;
     }
-    .officer-section:first-child .officer-photo::before {
-        content: "";
-        display: block;
-        height: 5px;      /* меняй это значение (пиксели) */
+    .guest-form .input-button-group {
+        flex-direction: column;
+    }
+    .guest-form input {
         width: 100%;
-        flex-shrink: 0;
+        margin-bottom: 10px;
     }
-    /* ----- ФОТО НЕВЕСТЫ (меняй эти значения) ----- */
-    .officer-section:last-child .officer-photo {
-        margin-top: 0px;
-    }
-
-    /* ----- КОЛЬЦА ----- */
-    .rings-image {
-        margin-top: 20px;
-        text-align: center;
-    }
-    .rings-image img {
-        max-width: 150px;
-        transform: rotate(9deg);
+    .guest-form button {
+        width: 100%;
     }
 
-    /* ----- ПЕЧАТЬ ВНИЗУ ----- */
+    /* === 5. ПЕЧАТЬ ВНИЗУ === */
     .stamp-overlay {
-        top: 100%;
-        left: 80%;
+        top: 60%;
+        left: 100%;
         transform: translate(-50%, -50%) rotate(-8deg);
     }
     .stamp-on-text-img {
-        width: 120px;
+        width: 100px;
     }
 }
-.officer-section:first-child .officer-photo {
-    margin-top: 100px !important;
+/* ========== ТОЧКИ В СПИСКЕ (МЕЛЬЧЕ, СВЕТЛЕЕ, ПЛОТНЕЕ) ========== */
+.circumstances-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: -5px;
+    margin-top: 5px;
+}
+.circumstances-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 4px;          /* ближе друг к другу */
+    font-size: 13px;
+    line-height: 1.3;
+}
+.circumstances-list li::before {
+    content: "•";
+    position: absolute;
+    left: 2px;
+    color: #aaa;                 /* светло-серые точки */
+    font-size: 12px;             /* мельче */
+}
+
+/* ========== ПРИГОВОР — КРУПНЕЕ ========== */
+.resolution strong {
+    display: block;
+    text-align: center;
+    font-size: 20px;             /* крупнее */
+    margin-bottom: 8px;
+}
+
+/* ========== ПУНКТЫ В ПРИГОВОРЕ (ТАКИЕ ЖЕ ТОЧКИ, КАК В СПИСКЕ) ========== */
+.resolution {
+    margin-top: 15px;
+    padding-top: 10px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.4;
+}
+.resolution br {
+    display: block;
+    margin-bottom: 4px;
+}
+/* ========== ПУНКТЫ ПРИГОВОРА КАК В СПИСКЕ ========== */
+.resolution {
+    margin-top: 15px;
+    padding-top: 10px;
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.4;
+}
+.resolution br {
+    display: none;
+}
+.resolution-line {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+/* Делаем пункты приговора списком */
+.resolution .sentence-item {
+    display: block;
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 6px;
+}
+.resolution .sentence-item::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #aaa;
+    font-size: 12px;
 }
