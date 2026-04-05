@@ -167,10 +167,11 @@ class ProtocolInvitation {
         const container = document.getElementById('programList');
         if (container) {
             container.innerHTML = `
-                <div class="program-item">14:30 — Сбор понятых</div>
+                <div class="program-item">14:30 — Сбор понятых по месту проведения</div>
                 <div class="program-item">15:00 — Оглашение протокола</div>
-                <div class="program-item">__________ — ____________________</div>
-                <div class="program-item">__________ — ____________________</div>
+                <div class="program-item">15:30 — Фотофиксация задержанной и понятых</div>
+                <div class="program-item">16:00 — Перемещение понятых к месту празднования: Санкт-Петербург, Тамбовская 11</div>
+                <div class="program-item">18:00 — Застолье и праздничные мероприятия</div>
             `;
         }
     }
