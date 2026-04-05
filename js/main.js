@@ -170,7 +170,7 @@ class ProtocolInvitation {
                 <div class="program-item">14:30 — Сбор понятых по месту проведения</div>
                 <div class="program-item">15:00 — Оглашение протокола</div>
                 <div class="program-item">15:15 — Фотофиксация задержанной и понятых</div>
-                <div class="program-item"15:30 — Перемещение понятых к месту празднования: Санкт-Петербург, Тамбовская ул.11</div>
+                <div class="program-item">15:30 — Перемещение понятых к месту празднования: Санкт-Петербург, Тамбовская ул.11</div>
                 <div class="program-item">18:00 — Застолье и праздничные мероприятия</div>
             `;
         }
@@ -255,9 +255,9 @@ class ProtocolInvitation {
         } catch(e) { this.guests = []; }
     }
 
-  sendToTelegram(name) {
+    sendToTelegram(name) {
     const BOT_TOKEN = '8769437407:AAF6pTr3N_Lsz__HWc4uMYkbUWQ0M4pjQ44';
-    const CHAT_ID = '-5226104460';   // твой chat_id группы
+    const CHAT_ID = '-5226104460';
 
     const message = `🟢 НОВЫЙ ГОСТЬ!\n\n👤 ФИО: ${name}\n📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
@@ -267,6 +267,7 @@ class ProtocolInvitation {
         body: JSON.stringify({ chat_id: CHAT_ID, text: message })
     }).catch(() => {});
 }
+
     playBeep() {
         try {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
