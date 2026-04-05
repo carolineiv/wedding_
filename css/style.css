@@ -647,3 +647,41 @@ body {
     .crime-description { font-size: 11px; }
     .circumstances-list li { font-size: 11px; }
 }
+/* ПРИНУДИТЕЛЬНОЕ ОТОБРАЖЕНИЕ КОЛЕЦ НА ТЕЛЕФОНЕ */
+.rings-image {
+    text-align: center;
+    width: 100%;
+}
+
+.rings-image img {
+    width: auto;
+    max-width: 90vw !important;
+    height: auto;
+    display: inline-block;
+    background: transparent;
+}
+
+/* Для совсем маленьких экранов */
+@media (max-width: 600px) {
+    .rings-image img {
+        max-width: 95vw !important;
+        width: 280px;
+    }
+}
+
+/* Если обрезается родителем */
+.program-with-rings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.program-content {
+    width: 100%;
+}
+
+.rings-image {
+    order: 1;
+    margin-top: 15px;
+}
