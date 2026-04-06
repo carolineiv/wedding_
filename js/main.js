@@ -257,7 +257,7 @@ class ProtocolInvitation {
 
     sendToTelegram(name) {
         const BOT_TOKEN = '8769437407:AAF6pTr3N_Lsz__HWc4uMYkbUWQ0M4pjQ44';
-        const CHAT_ID = '-5226104460';
+        const CHAT_ID = '-1003773639993,';
 
         const message = `🟢 Добавлен новый гость:\n\n👤 ФИО: ${name}\n📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
